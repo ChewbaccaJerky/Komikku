@@ -22,13 +22,15 @@
 - `GET api/chapter/:chapter_id`
     - Retrieve manga chapter pages
 ## review
-- `POST   api/:manga_id/review/`
+- `POST api/:manga_id/review/`
     - Create review for certain manga
-- `GET    api/review/:review_id`
+- `GET api/review`
+    - Get all reviews
+- `GET api/review/:review_id`
     - Retrieve a review
 - `DELETE api/review/:review_id`
     - Destroy a review
-- `UPDATE api/review/:review_id`
+- `PATCH api/review/:review_id`
     - Change existing review
 
 # Frontend
