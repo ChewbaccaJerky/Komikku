@@ -36,6 +36,8 @@
 # Frontend
 
 - `/` - Home Page / Dashboard / Latest
+- `/login` - Log In
+- `/signup` - Sign Up
 - `/search` - Search Page
 - `/manga/:manga_id` - Manga Detail Page
 - `/manga/:manga_name/:chapter_id` - Reader
