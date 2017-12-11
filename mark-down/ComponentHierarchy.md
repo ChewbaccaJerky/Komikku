@@ -9,18 +9,19 @@
         - `MainPage`
 
 ## Header
-### Components: 
+### Components 
 - `SessionButtonContainer`
     - `SessionButton`
-### State: 
+### State 
 - `session`
 
 ## Navbar
-### Components: 
+### Components 
 - `NavbarContainer`
     - `Navbar`
         - `NavbarItem`
-### State: none
+### State 
+- none
 
 ## Header
 ### Components
@@ -39,5 +40,49 @@
 ### State
 - `manga`
 - `session`
+### Routes
+- `/#/`
+- `/#/favorites`
+- `/#/search/:search_params`
+- `/#/category/:category`
+
+## SearchBarContainer
+### Components
+- `SearchBarContainer`
+    - `SearchBar`
+    - `SearchButton`
+
+### State
+- none
+
+## MangaDetailContainer
+### Components
+- `MangaDetailContainer`
+    - `MangaInfo`
+    - `CategoryContainer`
+        - `CategoryTab`
+    - `TitleContainer`
+
+### State
+- `session`
+- `chapter`
+
+### Route
+- `/#/manga/:id`
+
+## ReaderContainer
+### Components
+- `ReaderContainer`
+    - `Reader`
+    - `ReaderNavigation`
+    - `PagesContainer`
+        - `PagesIndex`
+            - `PagesIndexItem`
+
+### State
+- `session`
+- `pages`
+
+
 
 
