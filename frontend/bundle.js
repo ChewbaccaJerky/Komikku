@@ -956,13 +956,21 @@ var _session_api_util = __webpack_require__(28);
 
 var SessionAPI = _interopRequireWildcard(_session_api_util);
 
+var _manga_api_util = __webpack_require__(30);
+
+var MangaAPI = _interopRequireWildcard(_manga_api_util);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
-    var root = document.querySelector('#root');
+
+    /* TESTING */
     window.SessionAPI = SessionAPI;
+    window.MangaAPI = MangaAPI;
+    /*         */
+    var root = document.querySelector('#root');
     _reactDom2.default.render(_react2.default.createElement(_root2.default, null), root);
 });
 
@@ -28712,6 +28720,45 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.fetchManga = exports.fetchMangasByPage = exports.fetchAllMangas = undefined;
+
+var _jquery = __webpack_require__(29);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var fetchAllMangas = exports.fetchAllMangas = function fetchAllMangas() {
+    return _jquery2.default.ajax({
+        method: 'GET',
+        url: 'http://komikku-api.herokuapp.com/api/mangas'
+    });
+};
+
+var fetchMangasByPage = exports.fetchMangasByPage = function fetchMangasByPage(pageNum) {
+    return _jquery2.default.ajax({
+        method: 'GET',
+        url: 'http://komikku-api.herokuapp.com/api/page/' + pageNum
+    });
+};
+
+var fetchManga = exports.fetchManga = function fetchManga(id) {
+    return _jquery2.default.ajax({
+        method: 'GET',
+        url: 'http://komikku-api.herokuapp.com/api/mangas/' + id
+    });
+};
 
 /***/ })
 /******/ ]);
