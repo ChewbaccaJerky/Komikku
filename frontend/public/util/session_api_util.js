@@ -1,3 +1,4 @@
+import $ from "jquery";
 
 export const postUser = (user) => (
     $.ajax({
@@ -7,22 +8,13 @@ export const postUser = (user) => (
     })
 );
 
-// export const postSession = (user) => (
-//     $.ajax({
-//         method: 'POST',
-//         url: 'http://komikku-api.herokuapp.com/api/session',
-//         data: user
-//     })
-// );
-
-export const postSession = (user) => {
-    // console.log(user);
-    let url = "http://komikku-api.herokuapp.com/api/session";
-    return fetch(url, {
+export const postSession = (user) => (
+    $.ajax({
         method: 'POST',
-        body: user
-    });
-};
+        url: 'http://komikku-api.herokuapp.com/api/session',
+        data: user
+    })
+);
 
 export const destroySession = () => (
     $.ajax({
