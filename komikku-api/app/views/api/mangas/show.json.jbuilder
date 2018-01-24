@@ -1,2 +1,1 @@
-json.id @manga_id
-json.manga @manga
+json.set! @manga_id, @manga
