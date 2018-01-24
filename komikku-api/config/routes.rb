@@ -6,9 +6,8 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
 
     resources :mangas, only: [:show, :index]
+    get '/page/:id', to: "mangas#page"
   end
-
-  get 'api/page/:page_id', to: "api/mangas#index"
 
   root "static_pages#root"
 end

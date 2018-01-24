@@ -952,11 +952,17 @@ var _root = __webpack_require__(27);
 
 var _root2 = _interopRequireDefault(_root);
 
+var _session_api_util = __webpack_require__(28);
+
+var SessionAPI = _interopRequireWildcard(_session_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 document.addEventListener('DOMContentLoaded', function () {
     var root = document.querySelector('#root');
-
+    window.SessionAPI = SessionAPI;
     _reactDom2.default.render(_react2.default.createElement(_root2.default, null), root);
 });
 
@@ -18294,6 +18300,48 @@ var Root = function Root() {
 };
 
 exports.default = Root;
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var postUser = exports.postUser = function postUser(user) {
+    return $.ajax({
+        method: 'POST',
+        url: 'http://komikku-api.herokuapp.com/api/user',
+        data: user
+    });
+};
+
+// export const postSession = (user) => (
+//     $.ajax({
+//         method: 'POST',
+//         url: 'http://komikku-api.herokuapp.com/api/session',
+//         data: user
+//     })
+// );
+
+var postSession = exports.postSession = function postSession(user) {
+    // console.log(user);
+    var url = "http://komikku-api.herokuapp.com/api/session";
+    return fetch(url, {
+        method: 'POST',
+        body: user
+    });
+};
+
+var destroySession = exports.destroySession = function destroySession() {
+    return $.ajax({
+        method: 'DELETE',
+        url: 'http://komikku-api.herokuapp.com/api/session'
+    });
+};
 
 /***/ })
 /******/ ]);
