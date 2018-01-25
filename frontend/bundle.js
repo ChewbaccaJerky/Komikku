@@ -30934,6 +30934,10 @@ var _manga_api_util = __webpack_require__(116);
 
 var MangaAPI = _interopRequireWildcard(_manga_api_util);
 
+var _session_action = __webpack_require__(25);
+
+var SessionAction = _interopRequireWildcard(_session_action);
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -30946,13 +30950,18 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* TESTING ONLY */
 document.addEventListener('DOMContentLoaded', function () {
 
     var root = document.querySelector('#root');
     var store = (0, _store2.default)();
+
+    window.store = store;
+    window.dispatch = store.dispatch;
+    window.SessionAction = SessionAction;
+
     _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
+/* TESTING ONLY */
 
 /***/ }),
 /* 53 */
