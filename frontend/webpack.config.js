@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = {
     context: __dirname,
-    entry: "./public/app.jsx",
+    entry: "./public/komikku.jsx",
     output: {
         path: path.resolve(__dirname),
         filename: "bundle.js"
