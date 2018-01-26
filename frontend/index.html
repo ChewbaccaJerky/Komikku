@@ -6,7 +6,6 @@
     <link href="./static/css/main.css" rel="stylesheet" type="text/css"/>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <script src="./bundle.js"></script>
   </head>
   <body>
 
@@ -14,9 +13,13 @@
       React is not working...
     </div>
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
+    <div class="script">
+      <script src="./static/js/util/loadSVG.js"></script>
+      <script src="./bundle.js"></script>
+      <script>
+        // You can also require other files to run in this process
+        require('./renderer.js')
+      </script>
+    </div>
   </body>
 </html>

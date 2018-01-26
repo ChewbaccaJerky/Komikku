@@ -14,6 +14,6 @@ function loadSVG(selector, url) {
     }
     else {
         // fallback to png
-        target.innerHTML = "<img src='" + url + ".svg' />";
+        target.innerHTML = "<img class='icon' src='" + url + ".svg' />";
     }
 }
