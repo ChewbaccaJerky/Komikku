@@ -1,0 +1,33 @@
+
+.navbar {
+    height: 100vh;
+    
+    
+
+    .link-index {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(0,0,0, 0.2);
+        .link-item {
+            display: flex;
+            align-content: center;
+            padding-top: 1em;
+            .icon-container {
+                padding: 1em;
+                background-color: rgba(0,0,0, 0.4);
+                box-shadow: 5px 0 10px 10px gray;
+                .icon {
+                    height: 5vh;
+                    fill: #fff;
+                    stroke: #fff;
+                }
+            }
+
+            h1 {
+                padding: 0 1em;
+                color: #FFF;
+            }
+        }
+    }
+}

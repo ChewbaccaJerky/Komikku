@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "sass-to-css": "sass --watch ./static/sass/main.sass:./static/css/main.css",
+    "sass-to-css": "sass --watch ./static/sass/main.scss:./static/css/main.css",
     "wp-watch": "webpack --watch"
   },
   "repository": "https://github.com/electron/electron-quick-start",

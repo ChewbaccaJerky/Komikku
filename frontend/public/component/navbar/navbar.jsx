@@ -1,6 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import LinkIndex from './link-index';
+
+const image_name = [
+    "home",
+    "search",
+    "category",
+    "star"
+];
+
 class NavBar extends React.Component {
     constructor() {
         super();
@@ -10,10 +19,7 @@ class NavBar extends React.Component {
 
         return (
             <div className="navbar">
-                <Link to="/"><h1>Dashboard</h1></Link>
-                <Link to="/"><h1>Search</h1></Link>
-                <Link to="/"><h1>Categories</h1></Link>
-                <Link to="/"><h1>Favorites</h1></Link>
+                <LinkIndex image_name={image_name} />
             </div>
         );
     }

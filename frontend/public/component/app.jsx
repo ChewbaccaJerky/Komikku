@@ -4,10 +4,10 @@ import { Route, Switch } from 'react-router';
 import NavBar from './navbar/navbar';
 
 const App = () => (
-    <div>
+    <div className="main-container">
         <NavBar />        
 
-        <div className="main-page">
+        <div className="main">
             <Switch>
             
             </Switch>
