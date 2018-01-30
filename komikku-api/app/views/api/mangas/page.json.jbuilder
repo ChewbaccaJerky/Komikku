@@ -1,7 +1,7 @@
 json.page @mangas["page"]
 json.mangas do
         @mangas["manga"].each do |manga|
-            json.set! manga["i"] do
+            json.set! manga["a"] do
                 json.id manga["i"]
                 json.title manga["t"]
                 json.alias manga["a"]

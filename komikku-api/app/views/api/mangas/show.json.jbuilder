@@ -1,1 +1,1 @@
-json.set! @manga_id, @manga
+json.set! @manga["alias"], @manga
