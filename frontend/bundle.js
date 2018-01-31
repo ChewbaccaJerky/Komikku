@@ -31777,7 +31777,6 @@ var SessionReducer = function SessionReducer() {
     switch (action.type) {
         case _session_action.RECEIVE_CURRENT_USER:
             var currentUser = action.currentUser;
-            console.dir(currentUser);
             return (0, _lodash.merge)({}, { currentUser: currentUser });
         default:
             return state;

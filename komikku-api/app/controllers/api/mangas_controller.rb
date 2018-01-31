@@ -2,6 +2,8 @@ require 'rest-client'
 
 class Api::MangasController < ApplicationController
   
+  before_action :require_logged_in
+
   def index
 
     url = "https://www.mangaeden.com/api/list/1/"
