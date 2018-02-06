@@ -37565,9 +37565,9 @@ var _session_form_container = __webpack_require__(125);
 
 var _session_form_container2 = _interopRequireDefault(_session_form_container);
 
-var _dashboard_container = __webpack_require__(136);
+var _manga_index_container = __webpack_require__(138);
 
-var _dashboard_container2 = _interopRequireDefault(_dashboard_container);
+var _manga_index_container2 = _interopRequireDefault(_manga_index_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -37580,7 +37580,7 @@ var App = function App() {
             _reactRouter.Switch,
             null,
             _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _session_form_container2.default }),
-            _react2.default.createElement(_reactRouter.Route, { path: '/', component: _dashboard_container2.default })
+            _react2.default.createElement(_reactRouter.Route, { path: '/', component: _manga_index_container2.default })
         )
     );
 };
@@ -53828,7 +53828,9 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 136 */
+/* 136 */,
+/* 137 */,
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53842,15 +53844,17 @@ var _reactRedux = __webpack_require__(22);
 
 var _manga_action = __webpack_require__(33);
 
-var _dashboard = __webpack_require__(137);
+var _manga_index = __webpack_require__(139);
 
-var _dashboard2 = _interopRequireDefault(_dashboard);
+var _manga_index2 = _interopRequireDefault(_manga_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+    var page = state.entities.mangas.page ? page : 0;
     return {
-        mangas: state.entities.mangas
+        mangas: state.entities.mangas,
+        page: page
     };
 };
 
@@ -53862,10 +53866,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     };
 };
 
-exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_dashboard2.default);
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_manga_index2.default);
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53889,42 +53893,42 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Dashboard = function (_React$Component) {
-    _inherits(Dashboard, _React$Component);
+var MangaIndex = function (_React$Component) {
+    _inherits(MangaIndex, _React$Component);
 
-    function Dashboard(props) {
-        _classCallCheck(this, Dashboard);
+    function MangaIndex(props) {
+        _classCallCheck(this, MangaIndex);
 
-        var _this = _possibleConstructorReturn(this, (Dashboard.__proto__ || Object.getPrototypeOf(Dashboard)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (MangaIndex.__proto__ || Object.getPrototypeOf(MangaIndex)).call(this, props));
 
-        console.dir(props);
+        _this.state = { mangas: props.mangas, page: props.page };
         return _this;
     }
 
-    _createClass(Dashboard, [{
+    _createClass(MangaIndex, [{
         key: "componentWillMount",
         value: function componentWillMount() {
-            this.props.fetchMangasByPage(1);
+            this.props.fetchMangasByPage(this.props.page);
         }
     }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
                 "div",
-                { className: "dashboard" },
+                { className: "manga-index" },
                 _react2.default.createElement(
                     "h1",
                     null,
-                    "Dashboard"
+                    "MangaIndex"
                 )
             );
         }
     }]);
 
-    return Dashboard;
+    return MangaIndex;
 }(_react2.default.Component);
 
-exports.default = Dashboard;
+exports.default = MangaIndex;
 
 /***/ })
 /******/ ]);
