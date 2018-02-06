@@ -7,7 +7,7 @@ const image_name = [
     "home",
     "search",
     "category",
-    "star"
+    "favorites"
 ];
 
 class NavBar extends React.Component {
