@@ -53851,6 +53851,7 @@ var _manga_index2 = _interopRequireDefault(_manga_index);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+    console.log(state);
     var page = state.entities.mangas.page ? page : 0;
     return {
         mangas: state.entities.mangas,
@@ -53885,6 +53886,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _manga_item = __webpack_require__(140);
+
+var _manga_item2 = _interopRequireDefault(_manga_item);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53901,26 +53906,39 @@ var MangaIndex = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (MangaIndex.__proto__ || Object.getPrototypeOf(MangaIndex)).call(this, props));
 
-        _this.state = { mangas: props.mangas, page: props.page };
+        _this.state = { mangas: props.mangas.mangas, page: props.page };
         return _this;
     }
 
     _createClass(MangaIndex, [{
-        key: "componentWillMount",
+        key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.fetchMangasByPage(this.props.page);
         }
     }, {
-        key: "render",
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (this.state.mangas !== nextProps.mangas) {
+                this.setState({ mangas: nextProps.mangas.mangas, page: nextProps.mangas.page });
+            }
+        }
+    }, {
+        key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var mangaItems = [];
+
+            if (this.state.mangas) {
+                Object.keys(this.state.mangas).forEach(function (title) {
+                    mangaItems.push(_react2.default.createElement(_manga_item2.default, { manga: _this2.state.mangas[title], key: title }));
+                });
+            }
+
             return _react2.default.createElement(
-                "div",
-                { className: "manga-index" },
-                _react2.default.createElement(
-                    "h1",
-                    null,
-                    "MangaIndex"
-                )
+                'div',
+                { className: 'manga-index' },
+                mangaItems
             );
         }
     }]);
@@ -53929,6 +53947,34 @@ var MangaIndex = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = MangaIndex;
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var MangaItem = function MangaItem(props) {
+
+    return _react2.default.createElement(
+        "div",
+        { className: "manga-item" },
+        "manga item"
+    );
+};
+
+exports.default = MangaItem;
 
 /***/ })
 /******/ ]);
