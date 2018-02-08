@@ -9,5 +9,7 @@ body, html {
 }
 
 .main-container {
-    display: flex;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 20% 80%;
 }

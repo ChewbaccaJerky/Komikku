@@ -8,30 +8,15 @@ body, html {
   overflow: hidden; }
 
 .main-container {
-  display: flex; }
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 20% 80%; }
 
 /* COMPONENTS */
 .navbar {
-  height: 100vh; }
-  .navbar .link-index {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.2); }
-    .navbar .link-index .link-item {
-      display: flex;
-      align-content: center;
-      padding-top: 1em; }
-      .navbar .link-index .link-item .icon-container {
-        padding: 1em;
-        background-color: rgba(0, 0, 0, 0.4);
-        box-shadow: 5px 0 10px 10px gray; }
-        .navbar .link-index .link-item .icon-container .icon {
-          height: 5vh;
-          fill: #fff;
-          stroke: #fff; }
-      .navbar .link-index .link-item h1 {
-        padding: 0 1em;
-        color: #FFF; }
+  grid-column: 1; }
+
+.manga-index {
+  grid-column: 2/3; }
 
 /*# sourceMappingURL=main.css.map */
