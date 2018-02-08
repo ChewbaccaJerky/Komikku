@@ -37953,7 +37953,6 @@ var _manga_index2 = _interopRequireDefault(_manga_index);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-    console.log(state);
     var page = state.entities.mangas.page ? page : 0;
     return {
         mangas: state.entities.mangas,
@@ -38067,12 +38066,20 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MangaItem = function MangaItem(props) {
+var MangaItem = function MangaItem(_ref) {
+    var manga = _ref.manga;
 
+    console.log(manga);
+    var image = manga.image ? _react2.default.createElement("img", { src: "https://cdn.mangaeden.com/mangasimg/" + manga.image, alt: manga.title }) : "";
     return _react2.default.createElement(
         "div",
         { className: "manga-item" },
-        "manga item"
+        _react2.default.createElement(
+            "h1",
+            null,
+            manga.title
+        ),
+        image
     );
 };
 

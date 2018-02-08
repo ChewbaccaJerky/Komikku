@@ -2,7 +2,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    background: linear-gradient(60deg, rgb(0, 185, 252) 5%, #b23eff 50%);
+    background: linear-gradient(60deg, rgb(102, 211, 250) 20%, #c061ff 50%);
     font-family: 'Raleway', sans-serif;
     min-height: 100vh;
     overflow: hidden;
@@ -12,6 +12,6 @@ body, html {
     min-height: 100vh;
     display: grid;
     grid-template-columns: 20% 80%;
-    grid-template-rows: 1fr 15fr;
+    grid-template-rows: 1fr 20fr;
     grid-column-gap: 1em;
 }

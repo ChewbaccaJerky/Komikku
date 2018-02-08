@@ -1,0 +1,21 @@
+
+.manga-item {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+    background-color: rgba(0,0,0, 0.1);
+    height: 300px;
+    width: 200px;
+    margin: 0.15em;    
+
+    h1 {
+        grid-row: 2;
+        font-size: 1em;
+        text-align: center;
+    }
+
+    img {
+        grid-row: 1;
+        height: 100%;
+        width: 100%;
+    }
+}

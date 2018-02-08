@@ -2,7 +2,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  background: linear-gradient(60deg, #00b9fc 5%, #b23eff 50%);
+  background: linear-gradient(60deg, #66d3fa 20%, #c061ff 50%);
   font-family: 'Raleway', sans-serif;
   min-height: 100vh;
   overflow: hidden; }
@@ -11,7 +11,7 @@ body, html {
   min-height: 100vh;
   display: grid;
   grid-template-columns: 20% 80%;
-  grid-template-rows: 1fr 15fr;
+  grid-template-rows: 1fr 20fr;
   grid-column-gap: 1em; }
 
 /* COMPONENTS */
@@ -37,6 +37,26 @@ body, html {
 .manga-index {
   grid-column: 2;
   grid-row: 2;
-  background-color: rgba(0, 0, 0, 0.1); }
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow-x: scroll;
+  display: flex;
+  flex-wrap: wrap; }
+
+.manga-item {
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  background-color: rgba(0, 0, 0, 0.1);
+  height: 300px;
+  width: 200px;
+  margin: 0.15em; }
+  .manga-item h1 {
+    grid-row: 2;
+    font-size: 1em;
+    text-align: center; }
+  .manga-item img {
+    grid-row: 1;
+    height: 100%;
+    width: 100%; }
 
 /*# sourceMappingURL=main.css.map */
