@@ -2,7 +2,7 @@
 body, html {
   margin: 0;
   padding: 0;
-  background: linear-gradient(60deg, #7F98A1, #c0c5cc);
+  background: linear-gradient(60deg, #00b9fc 5%, #b23eff 50%);
   font-family: 'Raleway', sans-serif;
   min-height: 100vh;
   overflow: hidden; }
@@ -10,13 +10,33 @@ body, html {
 .main-container {
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 20% 80%; }
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1fr 15fr;
+  grid-column-gap: 1em; }
 
 /* COMPONENTS */
 .navbar {
-  grid-column: 1; }
+  background-color: rgba(0, 0, 0, 0.1);
+  grid-column: 1;
+  grid-row: 2; }
+  .navbar .link-index .link-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    .navbar .link-index .link-item h1 {
+      grid-column: 2;
+      font-size: 1em;
+      padding: 1em 0; }
+    .navbar .link-index .link-item .icon-container {
+      grid-column: 1;
+      padding: 1em; }
+      .navbar .link-index .link-item .icon-container .icon {
+        height: 2em; }
 
 .manga-index {
-  grid-column: 2/3; }
+  grid-column: 2;
+  grid-row: 2;
+  background-color: rgba(0, 0, 0, 0.1); }
 
 /*# sourceMappingURL=main.css.map */

@@ -1,12 +1,25 @@
 
 .navbar {
+    background-color: rgba(0,0,0, 0.1);
     grid-column: 1;
+    grid-row: 2;
 
     .link-index {
         .link-item{
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            grid-template-rows: 1fr;
+            border-bottom: 1px solid rgba(0,0,0, 0.1);
+            h1 {
+                grid-column: 2;
+                font-size: 1em;
+                padding: 1em 0;
+            }
             .icon-container {
+                grid-column: 1;
+                padding: 1em;
                 .icon {
-                    
+                    height: 2em;
                 }
             }
         }
