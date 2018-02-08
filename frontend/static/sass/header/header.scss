@@ -1,0 +1,15 @@
+
+.header {
+    grid-row: 1;
+    grid-column: 1;
+    background-color: rgba(0,0,0, 0.2);
+    
+    .logo {
+        text-align: center;
+        margin: 0;
+        padding: 1em;
+        font-size: 2em;
+        font-weight: bolder;
+        color: #FFF;
+    }
+}
