@@ -54,18 +54,20 @@ body, html {
   flex-wrap: wrap;
   margin: 0.75em; }
 
-.manga-item {
+.manga-item a {
   display: grid;
   grid-template-rows: 2fr 1fr;
   background-color: rgba(0, 0, 0, 0.1);
   height: 300px;
   width: 200px;
-  margin: 1.5em; }
-  .manga-item h1 {
+  margin: 1.5em;
+  text-decoration: none; }
+  .manga-item a h1 {
     grid-row: 2;
     font-size: 1em;
-    text-align: center; }
-  .manga-item img {
+    text-align: center;
+    color: black; }
+  .manga-item a img {
     grid-row: 1;
     height: 100%;
     width: 100%; }
