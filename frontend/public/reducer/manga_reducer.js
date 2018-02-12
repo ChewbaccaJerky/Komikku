@@ -11,7 +11,7 @@ const MangaReducer = (oldState = {}, action) => {
         case RECEIVE_MANGA:
             let newState = merge({}, oldState);
             let title = Object.keys(action.manga)[0];
-            newState.mangas[title] = action.manga[title];
+            newState[title] = action.manga[title];
             return newState;
 
         default:

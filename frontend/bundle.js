@@ -31910,7 +31910,7 @@ var MangaReducer = function MangaReducer() {
         case _manga_action.RECEIVE_MANGA:
             var newState = (0, _lodash.merge)({}, oldState);
             var title = Object.keys(action.manga)[0];
-            newState.mangas[title] = action.manga[title];
+            newState[title] = action.manga[title];
             return newState;
 
         default:
@@ -37594,7 +37594,7 @@ var App = function App() {
             null,
             _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _session_form_container2.default }),
             _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/home', component: _manga_index_container2.default }),
-            _react2.default.createElement(_reactRouter.Route, { path: '/manga/:alias', component: _manga_detail_container2.default })
+            _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/manga/:alias', component: _manga_detail_container2.default })
         )
     );
 };
@@ -54084,7 +54084,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
     var alias = ownProps.match.params.alias;
-    var manga = state.entities.mangas.mangas ? state.entities.mangas.mangas[alias] : null;
+    var manga = state.entities.mangas ? state.entities.mangas[alias] : null;
     return {
         manga: manga
     };
@@ -54149,15 +54149,8 @@ var MangaDetail = function (_React$Component) {
     _createClass(MangaDetail, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            if (this.state.manga) {
-                this.state.fetchManga(this.state.manga.id);
-            }
-        }
-    }, {
-        key: 'componentWillReceiveProps',
-        value: function componentWillReceiveProps(nextProps) {
-            if (this.state.manga != nextProps.manga) {
-                this.setState = { manga: nextProps.manga };
+            if (this.props.manga) {
+                this.state.fetchManga(this.props.manga.id);
             }
         }
     }, {
@@ -54166,7 +54159,7 @@ var MangaDetail = function (_React$Component) {
 
             if (!this.state.manga) return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/home' });
             var manga = this.state.manga;
-            console.log(manga);
+
             return _react2.default.createElement(
                 'div',
                 { className: 'manga-detail' },

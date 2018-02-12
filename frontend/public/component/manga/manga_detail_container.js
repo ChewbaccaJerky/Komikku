@@ -5,7 +5,7 @@ import MangaDetail from './manga_detail';
 
 const mapStateToProps = (state, ownProps) => {
     let alias = ownProps.match.params.alias;
-    let manga = state.entities.mangas.mangas ? state.entities.mangas.mangas[alias] : null;
+    let manga = state.entities.mangas ? state.entities.mangas[alias] : null;
     return {
         manga: manga
     };

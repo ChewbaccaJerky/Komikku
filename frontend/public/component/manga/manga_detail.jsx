@@ -9,14 +9,8 @@ class MangaDetail extends React.Component {
     }
 
     componentWillMount(){
-        if(this.state.manga) {
-            this.state.fetchManga(this.state.manga.id);
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if(this.state.manga != nextProps.manga) {
-            this.setState = { manga: nextProps.manga };
+        if(this.props.manga) {
+            this.state.fetchManga(this.props.manga.id);
         }
     }
 
@@ -24,7 +18,7 @@ class MangaDetail extends React.Component {
         
         if(!this.state.manga) return <Redirect to="/home" />;
         const manga = this.state.manga;
-        console.log(manga);
+
         return (
             <div className="manga-detail">
                 { manga.title }
