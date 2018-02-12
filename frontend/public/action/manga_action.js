@@ -6,8 +6,7 @@ export const RECEIVE_MANGA_ERRORS = "RECEIVE_MANGA_ERRORS";
 
 const receiveMangas = mangas => ({
     type: RECEIVE_MANGAS,
-    mangas: mangas.mangas,
-    page: mangas.page
+    mangas: mangas.mangas
 });
 
 const receiveManga = manga => ({

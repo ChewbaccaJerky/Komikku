@@ -18397,8 +18397,7 @@ var RECEIVE_MANGA_ERRORS = exports.RECEIVE_MANGA_ERRORS = "RECEIVE_MANGA_ERRORS"
 var receiveMangas = function receiveMangas(mangas) {
     return {
         type: RECEIVE_MANGAS,
-        mangas: mangas.mangas,
-        page: mangas.page
+        mangas: mangas.mangas
     };
 };
 
