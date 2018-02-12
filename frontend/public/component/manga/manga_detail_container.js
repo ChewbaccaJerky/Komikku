@@ -1,21 +1,20 @@
 import {connect} from 'react-redux';
 
-import { fetchManga } from '../../action/manga_action'; 
+import { fetchManga, fetchAllMangas } from '../../action/manga_action'; 
 import MangaDetail from './manga_detail';
 
 const mapStateToProps = (state, ownProps) => {
     let alias = ownProps.match.params.alias;
-    let manga = state.entities.mangas.mangas[alias];
-    console.log(alias);
-    console.log(manga);
+    let manga = state.entities.mangas.mangas ? state.entities.mangas.mangas[alias] : null;
     return {
-        prop: state.prop
+        manga: manga
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchManga: (id) => dispatch(fetchManga(id))
+        fetchManga: (id) => dispatch(fetchManga(id)),
+        fetchAllMangas: () => dispatch(fetchAllMangas())
     };
 };
 

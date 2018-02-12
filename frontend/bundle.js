@@ -54080,11 +54080,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
     var alias = ownProps.match.params.alias;
-    var manga = state.entities.mangas.mangas[alias];
-    console.log(alias);
-    console.log(manga);
+    var manga = state.entities.mangas.mangas ? state.entities.mangas.mangas[alias] : null;
     return {
-        prop: state.prop
+        manga: manga
     };
 };
 
@@ -54092,6 +54090,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     return {
         fetchManga: function fetchManga(id) {
             return dispatch((0, _manga_action.fetchManga)(id));
+        },
+        fetchAllMangas: function fetchAllMangas() {
+            return dispatch((0, _manga_action.fetchAllMangas)());
         }
     };
 };
@@ -54115,6 +54116,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(25);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -54126,20 +54129,36 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MangaDetail = function (_React$Component) {
     _inherits(MangaDetail, _React$Component);
 
-    function MangaDetail(props) {
+    function MangaDetail(_ref) {
+        var manga = _ref.manga,
+            fetchManga = _ref.fetchManga;
+
         _classCallCheck(this, MangaDetail);
 
-        return _possibleConstructorReturn(this, (MangaDetail.__proto__ || Object.getPrototypeOf(MangaDetail)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (MangaDetail.__proto__ || Object.getPrototypeOf(MangaDetail)).call(this));
+
+        _this.state = { manga: manga, fetchManga: fetchManga };
+
+        return _this;
     }
 
     _createClass(MangaDetail, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            if (this.state.manga) {
+                this.state.fetchManga(this.state.manga.id);
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
 
+            if (!this.state.manga) return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/home' });
+            var manga = this.state.manga;
             return _react2.default.createElement(
-                'h1',
-                null,
-                'detail item'
+                'div',
+                { className: 'manga-detail' },
+                manga.title
             );
         }
     }]);
