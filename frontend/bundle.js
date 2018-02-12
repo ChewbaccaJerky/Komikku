@@ -54163,7 +54163,9 @@ var MangaDetail = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'manga-detail' },
-                manga.title
+                manga.title,
+                manga.id,
+                manga.status
             );
         }
     }]);

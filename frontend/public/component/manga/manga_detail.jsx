@@ -22,6 +22,8 @@ class MangaDetail extends React.Component {
         return (
             <div className="manga-detail">
                 { manga.title }
+                { manga.id }
+                { manga.status }
             </div>
         );
     }
