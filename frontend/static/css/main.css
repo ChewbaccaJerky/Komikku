@@ -17,19 +17,21 @@ body, html {
   background-color: rgba(0, 0, 0, 0.1);
   grid-column: 1;
   grid-row: 2; }
-  .navbar .link-index .link-item {
+  .navbar .link-index .link-item a {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
-    .navbar .link-index .link-item h1 {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-decoration: none; }
+    .navbar .link-index .link-item a h1 {
       grid-column: 2;
       font-size: 1em;
-      padding: 1em 0; }
-    .navbar .link-index .link-item .icon-container {
+      padding: 1em 0;
+      color: #000; }
+    .navbar .link-index .link-item a .icon-container {
       grid-column: 1;
       padding: 1em; }
-      .navbar .link-index .link-item .icon-container .icon {
+      .navbar .link-index .link-item a .icon-container .icon {
         height: 2em; }
 
 .header {
@@ -38,8 +40,6 @@ body, html {
   background-color: rgba(0, 0, 0, 0.2); }
   .header .logo {
     text-align: center;
-    margin: 0;
-    padding: 1em;
     font-size: 2em;
     font-weight: bolder;
     color: #FFF; }

@@ -37723,7 +37723,6 @@ var Header = function (_React$Component) {
     _createClass(Header, [{
         key: "render",
         value: function render() {
-
             return _react2.default.createElement(
                 "div",
                 { className: "header" },
@@ -37852,6 +37851,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(25);
+
 var _icon = __webpack_require__(125);
 
 var _icon2 = _interopRequireDefault(_icon);
@@ -37863,11 +37864,15 @@ var LinkItem = function LinkItem(_ref) {
     return _react2.default.createElement(
         'div',
         { className: 'link-item' },
-        _react2.default.createElement(_icon2.default, { image_name: image_name }),
         _react2.default.createElement(
-            'h1',
-            null,
-            image_name.charAt(0).toUpperCase() + image_name.slice(1)
+            _reactRouterDom.Link,
+            { to: "/" + image_name },
+            _react2.default.createElement(_icon2.default, { image_name: image_name }),
+            _react2.default.createElement(
+                'h1',
+                null,
+                image_name.charAt(0).toUpperCase() + image_name.slice(1)
+            )
         )
     );
 };
@@ -38129,7 +38134,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var MangaItem = function MangaItem(_ref) {
     var manga = _ref.manga;
 
-    console.log(manga);
+
     var image = manga.image ? _react2.default.createElement("img", { src: "https://cdn.mangaeden.com/mangasimg/" + manga.image, alt: manga.title }) : "";
     return _react2.default.createElement(
         "div",

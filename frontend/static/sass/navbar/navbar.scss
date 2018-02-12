@@ -5,15 +5,17 @@
     grid-row: 2;
 
     .link-index {
-        .link-item{
+        .link-item a{
             display: grid;
             grid-template-columns: 1fr 2fr;
             grid-template-rows: 1fr;
             border-bottom: 1px solid rgba(0,0,0, 0.1);
+            text-decoration: none;
             h1 {
                 grid-column: 2;
                 font-size: 1em;
                 padding: 1em 0;
+                color: #000;
             }
             .icon-container {
                 grid-column: 1;
