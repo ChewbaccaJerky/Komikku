@@ -1,12 +1,13 @@
 .manga-index {
+    // border-radius: 0.5em;
     grid-column: 2;
     grid-row: 1 / 3;
-    height: 100vh;
+    height: 97vh;
     background-color: rgba(0, 0, 0, 0.1);
     overflow-x: scroll;
     
     display: flex;
     flex-wrap: wrap;
     // justify-content: space-around;
-    margin: 1em;
+    margin: 0.75em;
 }
