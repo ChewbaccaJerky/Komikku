@@ -5,7 +5,7 @@ import MangaItem from './manga_item';
 class MangaIndex extends React.Component {
     constructor(props){
         super(props);
-        this.state = {mangas: props.mangas.mangas, page: props.page };
+        this.state = {mangas: props.mangas, page: props.page };
     }
 
     componentWillMount(){
@@ -14,7 +14,7 @@ class MangaIndex extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         if(this.state.mangas !== nextProps.mangas) {
-            this.setState({mangas: nextProps.mangas.mangas, page: nextProps.mangas.page});
+            this.setState({mangas: nextProps.mangas });
         }
     }
 

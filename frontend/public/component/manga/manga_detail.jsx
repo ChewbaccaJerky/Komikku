@@ -14,10 +14,17 @@ class MangaDetail extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.state.manga != nextProps.manga) {
+            this.setState = { manga: nextProps.manga };
+        }
+    }
+
     render() {
         
         if(!this.state.manga) return <Redirect to="/home" />;
         const manga = this.state.manga;
+        console.log(manga);
         return (
             <div className="manga-detail">
                 { manga.title }

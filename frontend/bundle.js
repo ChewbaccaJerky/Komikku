@@ -31795,16 +31795,21 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _redux = __webpack_require__(12);
+
 var _entities_reducer = __webpack_require__(65);
 
 var _entities_reducer2 = _interopRequireDefault(_entities_reducer);
 
-var _redux = __webpack_require__(12);
+var _util_reducer = __webpack_require__(142);
+
+var _util_reducer2 = _interopRequireDefault(_util_reducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var RootReducer = (0, _redux.combineReducers)({
-    entities: _entities_reducer2.default
+    entities: _entities_reducer2.default,
+    util: _util_reducer2.default
 });
 
 exports.default = RootReducer;
@@ -31901,12 +31906,12 @@ var MangaReducer = function MangaReducer() {
 
     switch (action.type) {
         case _manga_action.RECEIVE_MANGAS:
-            return (0, _lodash.merge)({}, { mangas: action.mangas, page: action.page });
+            return (0, _lodash.merge)({}, oldState, action.mangas);
 
         case _manga_action.RECEIVE_MANGA:
             var newState = (0, _lodash.merge)({}, oldState);
             var title = Object.keys(action.manga)[0];
-            newState[title] = action.manga[title];
+            newState.mangas[title] = action.manga[title];
             return newState;
 
         default:
@@ -38023,10 +38028,10 @@ var _manga_index2 = _interopRequireDefault(_manga_index);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-    var page = state.entities.mangas.page ? page : 0;
+
     return {
         mangas: state.entities.mangas,
-        page: page
+        page: state.util.page
     };
 };
 
@@ -38077,7 +38082,7 @@ var MangaIndex = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (MangaIndex.__proto__ || Object.getPrototypeOf(MangaIndex)).call(this, props));
 
-        _this.state = { mangas: props.mangas.mangas, page: props.page };
+        _this.state = { mangas: props.mangas, page: props.page };
         return _this;
     }
 
@@ -38090,7 +38095,7 @@ var MangaIndex = function (_React$Component) {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
             if (this.state.mangas !== nextProps.mangas) {
-                this.setState({ mangas: nextProps.mangas.mangas, page: nextProps.mangas.page });
+                this.setState({ mangas: nextProps.mangas });
             }
         }
     }, {
@@ -54150,11 +54155,19 @@ var MangaDetail = function (_React$Component) {
             }
         }
     }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (this.state.manga != nextProps.manga) {
+                this.setState = { manga: nextProps.manga };
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
 
             if (!this.state.manga) return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/home' });
             var manga = this.state.manga;
+            console.log(manga);
             return _react2.default.createElement(
                 'div',
                 { className: 'manga-detail' },
@@ -54167,6 +54180,67 @@ var MangaDetail = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = MangaDetail;
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _lodash = __webpack_require__(19);
+
+var _util_action = __webpack_require__(143);
+
+var defaultState = {
+    page: 0
+};
+
+var UtilReducer = function UtilReducer() {
+    var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+    var action = arguments[1];
+
+    Object.freeze(oldState);
+
+    switch (action.type) {
+        case _util_action.RECEIVE_PAGE:
+            return (0, _lodash.merge)({}, action.page);
+
+        default:
+            return oldState;
+    }
+};
+
+exports.default = UtilReducer;
+
+/***/ }),
+/* 143 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var RECEIVE_PAGE = exports.RECEIVE_PAGE = "RECEIVE_PAGE";
+
+var receivePage = function receivePage(page) {
+    return {
+        type: RECEIVE_PAGE,
+        page: page
+    };
+};
+
+var changePage = exports.changePage = function changePage(page) {
+    return function (dispatch) {
+        dispatch(receivePage(page));
+    };
+};
 
 /***/ })
 /******/ ]);
