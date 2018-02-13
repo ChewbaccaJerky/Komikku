@@ -38321,9 +38321,7 @@ var MangaDetail = function (_React$Component) {
     }, {
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(nextProps) {
-            if (Object.keys(this.state.manga).length != Object.keys(nextProps.manga).length) {
-                this.setState({ manga: nextProps.manga });
-            }
+            this.setState({ manga: nextProps.manga });
         }
     }, {
         key: 'render',
@@ -38334,26 +38332,27 @@ var MangaDetail = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { className: 'manga-detail' },
-                _react2.default.createElement('img', { src: "https://cdn.mangaeden.com/mangasimg/" + manga.image, alt: 'image' }),
+                _react2.default.createElement('img', { className: 'image', src: "https://cdn.mangaeden.com/mangasimg/" + manga.image, alt: 'image' }),
                 _react2.default.createElement(
                     'h1',
-                    null,
+                    { className: 'title' },
+                    ' ',
                     manga.title
                 ),
                 _react2.default.createElement(
                     'h4',
-                    null,
+                    { className: 'artist' },
                     manga.artist
                 ),
                 _react2.default.createElement(
                     'p',
-                    null,
+                    { className: 'description' },
                     manga.description
                 ),
                 _react2.default.createElement(
                     'div',
                     { className: 'chapters' },
-                    manga.chapter_len
+                    manga.chapters_len == 0 ? "" : manga.chapters_len
                 )
             );
         }

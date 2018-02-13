@@ -15,9 +15,7 @@ class MangaDetail extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (Object.keys(this.state.manga).length != Object.keys(nextProps.manga).length) {
-            this.setState({manga: nextProps.manga});
-        }
+        this.setState({manga: nextProps.manga});
     }
 
     render() {
@@ -26,12 +24,12 @@ class MangaDetail extends React.Component {
         const manga = this.state.manga;
         return (
             <div className="manga-detail">
-                <img src={"https://cdn.mangaeden.com/mangasimg/" + manga.image} alt="image" />
-                <h1>{manga.title}</h1>
-                <h4>{manga.artist}</h4>
-                <p>{manga.description}</p>
+                <img className="image" src={"https://cdn.mangaeden.com/mangasimg/" + manga.image} alt="image" />
+                <h1 className="title" > {manga.title}</h1>
+                <h4 className="artist" >{manga.artist}</h4>
+                <p className="description" >{manga.description}</p>
                 <div className="chapters">
-                    { manga.chapter_len }
+                    { manga.chapters_len == 0 ? "" : manga.chapters_len }
                 </div>
             </div>
         );
