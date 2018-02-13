@@ -38287,6 +38287,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
+var _image = __webpack_require__(144);
+
+var _image2 = _interopRequireDefault(_image);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38329,10 +38333,18 @@ var MangaDetail = function (_React$Component) {
 
             if (!this.state.manga) return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/home' });
             var manga = this.state.manga;
+            var categories = manga.categories ? manga.categories : [];
+            categories = categories.map(function (cat) {
+                return _react2.default.createElement(
+                    'h1',
+                    { key: cat },
+                    cat
+                );
+            });
             return _react2.default.createElement(
                 'div',
                 { className: 'manga-detail' },
-                _react2.default.createElement('img', { className: 'image', src: "https://cdn.mangaeden.com/mangasimg/" + manga.image, alt: 'image' }),
+                _react2.default.createElement(_image2.default, { imageId: manga.image, title: manga.title }),
                 _react2.default.createElement(
                     'h1',
                     { className: 'title' },
@@ -38351,8 +38363,13 @@ var MangaDetail = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
+                    { className: 'categories' },
+                    categories
+                ),
+                _react2.default.createElement(
+                    'div',
                     { className: 'chapters' },
-                    manga.chapters_len == 0 ? "" : manga.chapters_len
+                    manga.chapters_len === 0 ? "" : manga.chapters_len
                 )
             );
         }
@@ -54258,6 +54275,33 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Image = function Image(_ref) {
+    var imageId = _ref.imageId,
+        title = _ref.title;
+    return _react2.default.createElement("img", { className: "image",
+        src: "https://cdn.mangaeden.com/mangasimg/" + imageId,
+        alt: title });
+};
+
+exports.default = Image;
 
 /***/ })
 /******/ ]);

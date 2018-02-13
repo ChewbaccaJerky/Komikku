@@ -7,9 +7,12 @@
     overflow-x: scroll;
     margin: 0.75em;
 
-    display: subgrid;
-    grid-template-columns: 50% 1fr 1fr;
-    grid-template-rows: repeat( 1fr );
-    
-    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(8, 1fr );
+    grid-gap: none;
+    grid-row-gap: none;
+    * {
+        border: 1px solid red;
+    }
 }
