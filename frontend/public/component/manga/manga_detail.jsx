@@ -14,16 +14,25 @@ class MangaDetail extends React.Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (Object.keys(this.state.manga).length != Object.keys(nextProps.manga).length) {
+            this.setState({manga: nextProps.manga});
+        }
+    }
+
     render() {
         
         if(!this.state.manga) return <Redirect to="/home" />;
         const manga = this.state.manga;
-
         return (
             <div className="manga-detail">
-                { manga.title }
-                { manga.id }
-                { manga.status }
+                <img src={"https://cdn.mangaeden.com/mangasimg/" + manga.image} alt="image" />
+                <h1>{manga.title}</h1>
+                <h4>{manga.artist}</h4>
+                <p>{manga.description}</p>
+                <div className="chapters">
+                    { manga.chapter_len }
+                </div>
             </div>
         );
     }
