@@ -27,16 +27,16 @@ class MangaDetail extends React.Component {
         const manga = this.state.manga;
         let categories = manga.categories ? manga.categories : [];
         categories = categories.map((cat) => (
-            <h1 key={cat} >{cat}</h1>
+            <p key={cat} >{cat}</p>
         ));
         return (
             <div className="manga-detail">
                 <Image imageId={manga.image} title={manga.title} />
                 <h1 className="title" > {manga.title}</h1>
-                <h4 className="artist" >{manga.artist}</h4>
-                <p className="description" >{manga.description}</p>
-                <div className="categories">
-                    { categories }
+                <h4 className="artist" ><span>By:</span> {manga.artist}</h4>
+                <p className="description" ><span>Description:</span> {manga.description}</p>
+                <div className="categories-container">
+                    <span>Categories:</span> <div className="categories">{ categories }</div>
                 </div>
                 <div className="chapters">
                     { manga.chapters_len === 0 ? "" : manga.chapters_len }

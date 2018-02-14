@@ -31632,7 +31632,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(137);
+var isTextNode = __webpack_require__(138);
 
 /*eslint-disable no-bitwise */
 
@@ -31724,7 +31724,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(135);
+var _reactDom = __webpack_require__(136);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -38287,7 +38287,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(6);
 
-var _image = __webpack_require__(144);
+var _image = __webpack_require__(135);
 
 var _image2 = _interopRequireDefault(_image);
 
@@ -38336,7 +38336,7 @@ var MangaDetail = function (_React$Component) {
             var categories = manga.categories ? manga.categories : [];
             categories = categories.map(function (cat) {
                 return _react2.default.createElement(
-                    'h1',
+                    'p',
                     { key: cat },
                     cat
                 );
@@ -38354,17 +38354,39 @@ var MangaDetail = function (_React$Component) {
                 _react2.default.createElement(
                     'h4',
                     { className: 'artist' },
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        'By:'
+                    ),
+                    ' ',
                     manga.artist
                 ),
                 _react2.default.createElement(
                     'p',
                     { className: 'description' },
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        'Description:'
+                    ),
+                    ' ',
                     manga.description
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'categories' },
-                    categories
+                    { className: 'categories-container' },
+                    _react2.default.createElement(
+                        'span',
+                        null,
+                        'Categories:'
+                    ),
+                    ' ',
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'categories' },
+                        categories
+                    )
                 ),
                 _react2.default.createElement(
                     'div',
@@ -38382,6 +38404,33 @@ exports.default = MangaDetail;
 
 /***/ }),
 /* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Image = function Image(_ref) {
+    var imageId = _ref.imageId,
+        title = _ref.title;
+    return _react2.default.createElement("img", { className: "image",
+        src: "https://cdn.mangaeden.com/mangasimg/" + imageId,
+        alt: title });
+};
+
+exports.default = Image;
+
+/***/ }),
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38419,15 +38468,15 @@ if (process.env.NODE_ENV === 'production') {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(136);
+  module.exports = __webpack_require__(137);
 } else {
-  module.exports = __webpack_require__(139);
+  module.exports = __webpack_require__(140);
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38663,7 +38712,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38678,7 +38727,7 @@ Z.injectIntoDevTools({findFiberByHostInstance:pb,bundleType:0,version:"16.2.0",r
  * @typechecks
  */
 
-var isNode = __webpack_require__(138);
+var isNode = __webpack_require__(139);
 
 /**
  * @param {*} object The object to check.
@@ -38691,7 +38740,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38719,7 +38768,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38753,8 +38802,8 @@ var containsNode = __webpack_require__(60);
 var focusNode = __webpack_require__(61);
 var emptyObject = __webpack_require__(17);
 var checkPropTypes = __webpack_require__(23);
-var hyphenateStyleName = __webpack_require__(140);
-var camelizeStyleName = __webpack_require__(142);
+var hyphenateStyleName = __webpack_require__(141);
+var camelizeStyleName = __webpack_require__(143);
 
 /**
  * WARNING: DO NOT manually require this module.
@@ -54121,7 +54170,7 @@ module.exports = reactDom;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54136,7 +54185,7 @@ module.exports = reactDom;
 
 
 
-var hyphenate = __webpack_require__(141);
+var hyphenate = __webpack_require__(142);
 
 var msPattern = /^ms-/;
 
@@ -54163,7 +54212,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54199,7 +54248,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54214,7 +54263,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(143);
+var camelize = __webpack_require__(144);
 
 var msPattern = /^-ms-/;
 
@@ -54242,7 +54291,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54275,33 +54324,6 @@ function camelize(string) {
 }
 
 module.exports = camelize;
-
-/***/ }),
-/* 144 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Image = function Image(_ref) {
-    var imageId = _ref.imageId,
-        title = _ref.title;
-    return _react2.default.createElement("img", { className: "image",
-        src: "https://cdn.mangaeden.com/mangasimg/" + imageId,
-        alt: title });
-};
-
-exports.default = Image;
 
 /***/ })
 /******/ ]);

@@ -1,3 +1,9 @@
+%shadow-box {
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.5em;
+    padding: 0.5em;
+}
 
 .manga-detail {
     grid-column: 2;
@@ -6,13 +12,68 @@
     background-color: rgba(0, 0, 0, 0.1);
     overflow-x: scroll;
     margin: 0.75em;
+    padding-right: 0.75em;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(8, 1fr );
-    grid-gap: none;
-    grid-row-gap: none;
+    grid-template-rows: repeat(8, 12.5%);
+    grid-row-gap: 0px;
+    grid-column-gap: 0.75em;
+
     * {
         border: 1px solid red;
+    }
+
+    .image {
+        grid-column: 1/2;
+        grid-row: 1 / 9; 
+        height: 100%;
+        width: 100%;
+    }
+    
+    .title {
+        grid-column: 2/3;
+        grid-row: 1/2;
+        font-size: 1.2em;
+        text-align: center;
+        @extend %shadow-box;
+    }
+
+    .artist {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        @extend %shadow-box;
+    }
+
+    .description {
+        grid-column: 2/3;
+        grid-row: 4/8;
+        @extend %shadow-box;
+
+        display: flex;
+        flex-direction: column;
+        span {
+            font-size: 1.5em;
+        }
+    }
+
+    .categories-container {
+        grid-column: 2/3;
+        grid-row: 3/4;
+        @extend %shadow-box;
+
+        display: flex;
+        flex-direction: column;
+
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+        }
+    }
+
+    .chapters {
+        grid-column: 2/3;
+        grid-row: 8/9;
     }
 }
