@@ -38337,7 +38337,7 @@ var MangaDetail = function (_React$Component) {
             categories = categories.map(function (cat) {
                 return _react2.default.createElement(
                     'p',
-                    { key: cat },
+                    { className: 'category', key: cat },
                     cat
                 );
             });
@@ -38375,18 +38375,14 @@ var MangaDetail = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'categories-container' },
+                    { className: 'categories' },
                     _react2.default.createElement(
                         'span',
                         null,
                         'Categories:'
                     ),
                     ' ',
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'categories' },
-                        categories
-                    )
+                    categories
                 ),
                 _react2.default.createElement(
                     'div',

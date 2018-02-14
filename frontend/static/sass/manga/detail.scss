@@ -1,5 +1,5 @@
 %shadow-box {
-    color: #FFF;
+    color: #000;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: 0.5em;
     padding: 0.5em;
@@ -20,9 +20,9 @@
     grid-row-gap: 0px;
     grid-column-gap: 0.75em;
 
-    * {
-        border: 1px solid red;
-    }
+    // * {
+    //     border: 1px solid red;
+    // }
 
     .image {
         grid-column: 1/2;
@@ -37,6 +37,8 @@
         font-size: 1.2em;
         text-align: center;
         @extend %shadow-box;
+        color: #000;
+        font-weight: bolder;
     }
 
     .artist {
@@ -57,23 +59,29 @@
         }
     }
 
-    .categories-container {
+    .categories {
         grid-column: 2/3;
         grid-row: 3/4;
         @extend %shadow-box;
 
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: flex-start;
+        flex-wrap: wrap;
 
-        .categories {
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
+        .span {
+            font-size: 1.5em;
+        }
+
+        .category {
+            margin: 0.2em;
         }
     }
 
     .chapters {
         grid-column: 2/3;
         grid-row: 8/9;
+
+        @extend %shadow-box;
     }
 }
