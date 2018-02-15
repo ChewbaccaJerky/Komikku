@@ -26,12 +26,14 @@ class ChapterPicker extends React.Component {
 
     render(){
         const options = this.state.chapters.map((chapter) => {
-            
+            return (<option key={chapter[0]} value={chapter[0]}>{chapter[0]}</option>);
         });
         return (
             <div className="chapters">
                <form onSubmit={this.handleSubmit}>
-                
+                    <select>
+                        { options }
+                    </select>
                 <button type="submit">Submit</button>
                </form>
             </div>

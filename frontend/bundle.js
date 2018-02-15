@@ -54385,13 +54385,24 @@ var ChapterPicker = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var options = this.state.chapters.map(function (chapter) {});
+            var options = this.state.chapters.map(function (chapter) {
+                return _react2.default.createElement(
+                    "option",
+                    { key: chapter[0], value: chapter[0] },
+                    chapter[0]
+                );
+            });
             return _react2.default.createElement(
                 "div",
                 { className: "chapters" },
                 _react2.default.createElement(
                     "form",
                     { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        "select",
+                        null,
+                        options
+                    ),
                     _react2.default.createElement(
                         "button",
                         { type: "submit" },
