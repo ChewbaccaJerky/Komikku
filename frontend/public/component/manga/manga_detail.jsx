@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Image from '../basic/image';
-
+import ChapterPicker from './chapter_picker';
 
 class MangaDetail extends React.Component {
     constructor({manga, fetchManga }){
@@ -37,9 +37,7 @@ class MangaDetail extends React.Component {
                 <div className="categories">
                     <span>Categories:</span> { categories }
                 </div>
-                <div className="chapters">
-                    { manga.chapters_len === 0 ? "" : manga.chapters_len }
-                </div>
+                <ChapterPicker manga={manga.title} chapters={manga.chapters} />
             </div>
         );
     }

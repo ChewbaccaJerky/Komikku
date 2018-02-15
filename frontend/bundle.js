@@ -38291,6 +38291,10 @@ var _image = __webpack_require__(135);
 
 var _image2 = _interopRequireDefault(_image);
 
+var _chapter_picker = __webpack_require__(146);
+
+var _chapter_picker2 = _interopRequireDefault(_chapter_picker);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38383,11 +38387,7 @@ var MangaDetail = function (_React$Component) {
                     ' ',
                     categories
                 ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'chapters' },
-                    manga.chapters_len === 0 ? "" : manga.chapters_len
-                )
+                _react2.default.createElement(_chapter_picker2.default, { manga: manga.title, chapters: manga.chapters })
             );
         }
     }]);
@@ -54319,6 +54319,93 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 145 */,
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(121);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ChapterPicker = function (_React$Component) {
+    _inherits(ChapterPicker, _React$Component);
+
+    function ChapterPicker(_ref) {
+        var manga = _ref.manga,
+            _ref$chapters = _ref.chapters,
+            chapters = _ref$chapters === undefined ? [] : _ref$chapters;
+
+        _classCallCheck(this, ChapterPicker);
+
+        var _this = _possibleConstructorReturn(this, (ChapterPicker.__proto__ || Object.getPrototypeOf(ChapterPicker)).call(this));
+
+        _this.state = {
+            manga: manga,
+            chapters: chapters,
+            fireRedirect: false
+        };
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    _createClass(ChapterPicker, [{
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            if (this.state.chapters.length != nextProps.chapters.length) {
+                this.setState({ chapters: nextProps.chapters });
+            }
+        }
+    }, {
+        key: "handleSubmit",
+        value: function handleSubmit(e) {
+            e.preventDefault();
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var options = this.state.chapters.map(function (chapter) {});
+            return _react2.default.createElement(
+                "div",
+                { className: "chapters" },
+                _react2.default.createElement(
+                    "form",
+                    { onSubmit: this.handleSubmit },
+                    _react2.default.createElement(
+                        "button",
+                        { type: "submit" },
+                        "Submit"
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ChapterPicker;
+}(_react2.default.Component);
+
+exports.default = ChapterPicker;
 
 /***/ })
 /******/ ]);
