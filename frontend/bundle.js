@@ -38311,7 +38311,6 @@ var MangaDetail = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (MangaDetail.__proto__ || Object.getPrototypeOf(MangaDetail)).call(this));
 
         _this.state = { manga: manga, fetchManga: fetchManga };
-
         return _this;
     }
 

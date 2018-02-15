@@ -119,11 +119,15 @@ body, html {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
+    align-items: flex-start;
     flex-wrap: wrap; }
     .manga-detail .categories .span {
       font-size: 1.5em; }
     .manga-detail .categories .category {
-      margin: 0.2em; }
+      margin: 0 0.5em;
+      padding: 0.5em;
+      border-radius: 0.5em;
+      background: rgba(0, 0, 0, 0.1); }
   .manga-detail .chapters {
     grid-column: 2/3;
     grid-row: 8/9; }

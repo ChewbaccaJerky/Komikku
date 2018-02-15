@@ -1,0 +1,12 @@
+
+// Variables
+$primary-color: linear-gradient(120deg, rgb(102, 211, 250) 10%, #c061ff 50%);
+$background-color: rgba(0,0,0, 0.1);
+
+// Mixins
+%shadow-box {
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 0.5em;
+    padding: 0.5em;
+}

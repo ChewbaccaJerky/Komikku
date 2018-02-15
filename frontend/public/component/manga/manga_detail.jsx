@@ -8,7 +8,6 @@ class MangaDetail extends React.Component {
     constructor({manga, fetchManga }){
         super();
         this.state = { manga, fetchManga };
-
     }
 
     componentWillMount(){
