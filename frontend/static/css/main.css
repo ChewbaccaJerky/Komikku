@@ -74,7 +74,7 @@ body, html {
 
 .manga-detail .title, .manga-detail .artist, .manga-detail .description, .manga-detail .categories, .manga-detail .chapters {
   color: #000;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
   border-radius: 0.5em;
   padding: 0.5em; }
 
@@ -130,6 +130,7 @@ body, html {
       background: rgba(0, 0, 0, 0.1); }
   .manga-detail .chapters {
     grid-column: 2/3;
-    grid-row: 8/9; }
+    grid-row: 8/9;
+    margin-bottom: 1em; }
 
 /*# sourceMappingURL=main.css.map */

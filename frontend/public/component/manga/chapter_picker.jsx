@@ -22,6 +22,7 @@ class ChapterPicker extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        // FireRedirect to link ":manga_alias/:chapter_num"
     }
 
     render(){

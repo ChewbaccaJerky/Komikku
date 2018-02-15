@@ -82,5 +82,6 @@
         grid-row: 8/9;
 
         @extend %shadow-box;
+        margin-bottom: 1em;
     }
 }

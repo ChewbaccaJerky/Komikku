@@ -54381,6 +54381,7 @@ var ChapterPicker = function (_React$Component) {
         key: "handleSubmit",
         value: function handleSubmit(e) {
             e.preventDefault();
+            // FireRedirect to link ":manga_alias/:chapter_num"
         }
     }, {
         key: "render",
