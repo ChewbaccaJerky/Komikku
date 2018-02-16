@@ -1,4 +1,40 @@
+@import "../_variables";
+
+%picker-box {
+    height: 5em;
+    width: 45%;
+    border: none;
+    border-radius: 1em;
+    background: $background-color;
+}
 
 .chapter-picker {
     
+
+
+    form {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        select {
+            @extend %picker-box;
+            padding: 1em;
+            option { 
+
+            }
+        }
+
+        button {
+            @extend %picker-box;
+            transition: all 1s;
+            &:hover {
+                background: rgba(255, 255, 255, 0.1);
+                color: #000;
+                font-weight: 800;
+                padding: 0;
+            }
+        }
+    }
 }

@@ -14,3 +14,9 @@ body, html {
     grid-template-columns: 20% 80%;
     grid-template-rows: 1fr 20fr;
 }
+
+button {
+    cursor: pointer;
+    padding: 0;
+    border-radius: 0;
+}

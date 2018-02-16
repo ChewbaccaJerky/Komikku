@@ -38510,7 +38510,7 @@ var ChapterPicker = function (_React$Component) {
                 return _react2.default.createElement(
                     "option",
                     { key: chapter[0], value: chapter[0] },
-                    chapter[0]
+                    alias + " " + chapter[0]
                 );
             });
 
@@ -38528,7 +38528,7 @@ var ChapterPicker = function (_React$Component) {
                     _react2.default.createElement(
                         "button",
                         { type: "submit" },
-                        "Submit"
+                        "READ"
                     )
                 )
             );
