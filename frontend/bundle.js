@@ -38338,7 +38338,6 @@ var MangaDetail = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
             if (!this.state.manga) return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/home' });
             var manga = this.state.manga;
             var categories = manga.categories ? manga.categories : [];
@@ -38392,7 +38391,7 @@ var MangaDetail = function (_React$Component) {
                     ' ',
                     categories
                 ),
-                _react2.default.createElement(_chapter_picker2.default, { manga: manga.title, chapters: manga.chapters })
+                _react2.default.createElement(_chapter_picker2.default, { alias: manga.alias, chapters: manga.chapters })
             );
         }
     }]);
@@ -38460,7 +38459,7 @@ var ChapterPicker = function (_React$Component) {
     _inherits(ChapterPicker, _React$Component);
 
     function ChapterPicker(_ref) {
-        var manga = _ref.manga,
+        var alias = _ref.alias,
             _ref$chapters = _ref.chapters,
             chapters = _ref$chapters === undefined ? [] : _ref$chapters;
 
@@ -38469,7 +38468,7 @@ var ChapterPicker = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (ChapterPicker.__proto__ || Object.getPrototypeOf(ChapterPicker)).call(this));
 
         _this.state = {
-            manga: manga,
+            alias: alias,
             chapters: chapters,
             selectedChapter: null,
             fireRedirect: false
@@ -38483,7 +38482,7 @@ var ChapterPicker = function (_React$Component) {
     _createClass(ChapterPicker, [{
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
-            if (this.state.chapters.length != nextProps.chapters.length) {
+            if (this.state.chapters.length !== nextProps.chapters.length) {
                 this.setState({ chapters: nextProps.chapters, selectedChapter: nextProps.chapters[0][0] });
             }
         }
@@ -38505,7 +38504,7 @@ var ChapterPicker = function (_React$Component) {
             var _state = this.state,
                 fireRedirect = _state.fireRedirect,
                 selectedChapter = _state.selectedChapter,
-                manga = _state.manga;
+                alias = _state.alias;
 
             var options = this.state.chapters.map(function (chapter) {
                 return _react2.default.createElement(
@@ -38514,10 +38513,10 @@ var ChapterPicker = function (_React$Component) {
                     chapter[0]
                 );
             });
-            console.log(selectedChapter);
-            return fireRedirect ? _react2.default.createElement(_reactRouter.Redirect, { to: "/manga/" + manga.alias + "/" + selectedChapter }) : _react2.default.createElement(
+
+            return fireRedirect ? _react2.default.createElement(_reactRouter.Redirect, { to: "/manga/" + alias + "/" + selectedChapter }) : _react2.default.createElement(
                 "div",
-                { className: "chapters" },
+                { className: "chapter-picker" },
                 _react2.default.createElement(
                     "form",
                     { onSubmit: this.handleSubmit },
@@ -54457,11 +54456,19 @@ var _reader2 = _interopRequireDefault(_reader);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
+    var _ownProps$match$param = ownProps.match.params,
+        alias = _ownProps$match$param.alias,
+        chapter = _ownProps$match$param.chapter;
 
-    return {};
+    var manga = state.entities.mangas[alias];
+
+    return {
+        manga: manga,
+        currentChapter: chapter
+    };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispach, ownProps) {
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
     return {};
 };
@@ -54496,15 +54503,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Reader = function (_React$Component) {
     _inherits(Reader, _React$Component);
 
-    function Reader() {
+    function Reader(_ref) {
+        var manga = _ref.manga,
+            currentChapter = _ref.currentChapter;
+
         _classCallCheck(this, Reader);
 
-        return _possibleConstructorReturn(this, (Reader.__proto__ || Object.getPrototypeOf(Reader)).call(this));
+        var _this = _possibleConstructorReturn(this, (Reader.__proto__ || Object.getPrototypeOf(Reader)).call(this));
+
+        _this.state = { manga: manga, currentChapter: currentChapter };
+        return _this;
     }
 
     _createClass(Reader, [{
+        key: "componentWillReceiveProps",
+        value: function componentWillReceiveProps(nextProps) {
+            if (this.state.currentChapter !== nextProps.currentChapter) {
+                this.setState({ currentChapter: nextProps.currentChapter });
+            }
+        }
+    }, {
         key: "render",
         value: function render() {
+            console.dir(this.state);
+
             return _react2.default.createElement(
                 "div",
                 { className: "reader" },

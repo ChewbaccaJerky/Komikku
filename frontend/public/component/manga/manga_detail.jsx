@@ -21,7 +21,6 @@ class MangaDetail extends React.Component {
     }
 
     render() {
-        
         if(!this.state.manga) return <Redirect to="/home" />;
         const manga = this.state.manga;
         let categories = manga.categories ? manga.categories : [];
@@ -37,7 +36,7 @@ class MangaDetail extends React.Component {
                 <div className="categories">
                     <span>Categories:</span> { categories }
                 </div>
-                <ChapterPicker manga={manga.title} chapters={manga.chapters} />
+                <ChapterPicker alias={manga.alias} chapters={manga.chapters} />
             </div>
         );
     }
