@@ -8,6 +8,7 @@ import NavBar from './navbar/navbar';
 import SessionFormContainer from './session_form/session_form_container';
 import MangaIndexContainer from './manga/manga_index_container';
 import MangaDetailContainer from './manga/manga_detail_container';
+import ReaderContainer from "./reader/reader_container";
 
 const App = () => (
     <div className="main-container">
@@ -16,7 +17,8 @@ const App = () => (
         <Switch>
             <AuthRoute exact path="/login" component={ SessionFormContainer } />
             <Route exact path="/home" component={ MangaIndexContainer }/>
-            <Route exact path="/manga/:alias" component={ MangaDetailContainer} />
+            <Route exact path="/manga/:alias" component={ MangaDetailContainer } />
+            <Route exact path="/manga/:alias/:chapter" component={ ReaderContainer } />
         </Switch>
     </div>
 );
