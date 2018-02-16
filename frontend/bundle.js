@@ -54511,7 +54511,7 @@ var Reader = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Reader.__proto__ || Object.getPrototypeOf(Reader)).call(this));
 
-        _this.state = { manga: manga, currentChapter: currentChapter };
+        _this.state = { manga: manga, currentChapter: currentChapter, currentPage: 0 };
         return _this;
     }
 
@@ -54525,8 +54525,6 @@ var Reader = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            console.dir(this.state);
-
             return _react2.default.createElement(
                 "div",
                 { className: "reader" },

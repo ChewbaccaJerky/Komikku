@@ -3,7 +3,7 @@ import React from "react";
 class Reader extends React.Component {
     constructor({manga, currentChapter}){
         super();
-        this.state = { manga, currentChapter };
+        this.state = { manga, currentChapter, currentPage: 0 };
     }
 
     componentWillReceiveProps(nextProps) {
@@ -13,8 +13,6 @@ class Reader extends React.Component {
     }
 
     render(){
-        console.dir(this.state);
-
         return(
             <div className="reader">
                 READER!
