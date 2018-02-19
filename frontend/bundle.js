@@ -38568,6 +38568,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _reactRedux = __webpack_require__(6);
 
+var _chapter_action = __webpack_require__(149);
+
 var _reader = __webpack_require__(138);
 
 var _reader2 = _interopRequireDefault(_reader);
@@ -38580,7 +38582,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
         chapter = _ownProps$match$param.chapter;
 
     var manga = state.entities.mangas[alias];
-
+    var chapters = manga.chapters;
     return {
         manga: manga,
         currentChapter: chapter
@@ -38589,7 +38591,11 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
 
-    return {};
+    return {
+        fetchChapter: function fetchChapter(chapterId) {
+            return dispatch((0, _chapter_action.fetchChapter)(chapterId));
+        }
+    };
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_reader2.default);
