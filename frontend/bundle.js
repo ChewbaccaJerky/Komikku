@@ -31782,6 +31782,10 @@ var _manga_api_util = __webpack_require__(38);
 
 var MangaAPI = _interopRequireWildcard(_manga_api_util);
 
+var _chapter_api_util = __webpack_require__(139);
+
+var ChapterAPI = _interopRequireWildcard(_chapter_api_util);
+
 var _session_action = __webpack_require__(14);
 
 var SessionAction = _interopRequireWildcard(_session_action);
@@ -31790,9 +31794,9 @@ var _manga_action = __webpack_require__(16);
 
 var MangaAction = _interopRequireWildcard(_manga_action);
 
-var _chapter_api_util = __webpack_require__(139);
+var _chapter_action = __webpack_require__(149);
 
-var ChapterAPI = _interopRequireWildcard(_chapter_api_util);
+var ChapterAction = _interopRequireWildcard(_chapter_action);
 
 var _react = __webpack_require__(0);
 
@@ -31806,6 +31810,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/* TESTING ONLY */
 document.addEventListener('DOMContentLoaded', function () {
 
     var root = document.querySelector('#root');
@@ -31816,10 +31821,10 @@ document.addEventListener('DOMContentLoaded', function () {
     window.SessionAction = SessionAction;
     window.MangaAction = MangaAction;
     window.ChapterAPI = ChapterAPI;
+    window.ChapterAction = ChapterAction;
 
     _reactDom2.default.render(_react2.default.createElement(_root2.default, { store: store }), root);
 });
-/* TESTING ONLY */
 
 /***/ }),
 /* 65 */
@@ -32456,12 +32461,17 @@ var _session_errors_reducer = __webpack_require__(84);
 
 var _session_errors_reducer2 = _interopRequireDefault(_session_errors_reducer);
 
+var _chapter_reducer = __webpack_require__(150);
+
+var _chapter_reducer2 = _interopRequireDefault(_chapter_reducer);
+
 var _redux = __webpack_require__(12);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var EntitiesReducer = (0, _redux.combineReducers)({
     mangas: _manga_reducer2.default,
+    chapter: _chapter_reducer2.default,
     session: _session_reducer2.default,
     errors: _session_errors_reducer2.default
 });
@@ -54585,6 +54595,88 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.fetchChapter = exports.receiveChapter = exports.RECEIVE_CHAPTER_ERRORS = exports.RECEIVE_CHAPTER = undefined;
+
+var _chapter_api_util = __webpack_require__(139);
+
+var ChapterAPIUtil = _interopRequireWildcard(_chapter_api_util);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+var RECEIVE_CHAPTER = exports.RECEIVE_CHAPTER = "RECEIVE_CHAPTER";
+var RECEIVE_CHAPTER_ERRORS = exports.RECEIVE_CHAPTER_ERRORS = "RECEIVE_CHAPTER_ERRORS";
+
+var receiveChapter = exports.receiveChapter = function receiveChapter(chapter) {
+    return {
+        type: RECEIVE_CHAPTER,
+        chapter: chapter.chapter
+    };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+    return {
+        type: RECEIVE_CHAPTER_ERRORS,
+        errors: errors
+    };
+};
+
+var fetchChapter = exports.fetchChapter = function fetchChapter(chapterId) {
+    return function (dispatch) {
+        return ChapterAPIUtil.fetchChapterImages(chapterId).then(function (chapter) {
+            return dispatch(receiveChapter(chapter));
+        }, function (err) {
+            return dispatch(receiveErrors(err));
+        });
+    };
+};
+
+/***/ }),
+/* 150 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _chapter_action = __webpack_require__(149);
+
+var _lodash = __webpack_require__(15);
+
+var defaultState = {
+    chapter: {}
+};
+
+var ChapterReducer = function ChapterReducer() {
+    var oldState = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+    var action = arguments[1];
+
+    Object.freeze(oldState);
+
+    switch (action.type) {
+        case _chapter_action.RECEIVE_CHAPTER:
+            var newState = (0, _lodash.merge)({}, oldState, action.chapter);
+            return newState;
+
+        default:
+            return oldState;
+    }
+};
+
+exports.default = ChapterReducer;
 
 /***/ })
 /******/ ]);

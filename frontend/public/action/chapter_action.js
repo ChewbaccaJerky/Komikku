@@ -5,7 +5,7 @@ export const RECEIVE_CHAPTER_ERRORS = "RECEIVE_CHAPTER_ERRORS";
 
 export const  receiveChapter = chapter => ({
     type: RECEIVE_CHAPTER,
-    chapter
+    chapter: chapter.chapter
 });
 
 const receiveErrors = errors => ({
