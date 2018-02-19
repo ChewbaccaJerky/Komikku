@@ -38596,6 +38596,10 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _image = __webpack_require__(135);
+
+var _image2 = _interopRequireDefault(_image);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38638,14 +38642,16 @@ var Reader = function (_React$Component) {
             if (manga) {
                 chapter = manga.chapters.filter(function (chap) {
                     if (chap[0] == currentChapter) {
-                        console.log(chap);
                         return chap;
                     }
-                });
+                })[0];
             }
 
-            console.log(chapter);
-            return _react2.default.createElement("div", { className: "reader" });
+            return _react2.default.createElement(
+                "div",
+                { className: "reader" },
+                chapter != [] ? _react2.default.createElement(_image2.default, { imageId: chapter[3], title: chapter[2] }) : ""
+            );
         }
     }]);
 

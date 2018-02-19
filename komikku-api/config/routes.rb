@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
 
     resources :mangas, only: [:show, :index]
+    resources :chapters, only: [:show]
     get '/page/:id', to: "mangas#page"
   end
 

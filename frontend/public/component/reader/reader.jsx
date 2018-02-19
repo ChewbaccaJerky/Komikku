@@ -1,5 +1,7 @@
 import React from "react";
 
+import Image from "../basic/image";
+
 class Reader extends React.Component {
     constructor({manga, currentChapter}){
         super();
@@ -20,10 +22,12 @@ class Reader extends React.Component {
                 if( chap[0] == currentChapter) {
                     return chap;
                 }
-            });
+            })[0];
         }
+
         return(
             <div className="reader">
+                { chapter != [] ? <Image imageId={chapter[3]} title={chapter[2]} /> : ""}
             </div>
         );
     }
