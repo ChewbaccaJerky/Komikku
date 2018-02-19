@@ -38634,12 +38634,18 @@ var Reader = function (_React$Component) {
                 currentChapter = _state.currentChapter,
                 currentPage = _state.currentPage;
 
-            console.log(manga);
-            return _react2.default.createElement(
-                "div",
-                { className: "reader" },
-                "READER!"
-            );
+            var chapter = [];
+            if (manga) {
+                chapter = manga.chapters.filter(function (chap) {
+                    if (chap[0] == currentChapter) {
+                        console.log(chap);
+                        return chap;
+                    }
+                });
+            }
+
+            console.log(chapter);
+            return _react2.default.createElement("div", { className: "reader" });
         }
     }]);
 

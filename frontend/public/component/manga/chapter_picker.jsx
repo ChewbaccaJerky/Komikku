@@ -37,7 +37,7 @@ class ChapterPicker extends React.Component {
         const options = this.state.chapters.map((chapter) => {
             return (<option key={chapter[0]} value={chapter[0]}>{alias + " " + chapter[0]}</option>);
         });
-
+        
         return fireRedirect ? (<Redirect to={ "/manga/" + alias + "/" + selectedChapter } />) : (
             <div className="chapter-picker">
                <form onSubmit={this.handleSubmit}>

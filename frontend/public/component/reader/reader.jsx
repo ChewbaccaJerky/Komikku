@@ -14,10 +14,16 @@ class Reader extends React.Component {
 
     render(){
         const { manga, currentChapter, currentPage } = this.state;
-        console.log(manga);
+        let chapter = [];
+        if(manga) {
+            chapter = manga.chapters.filter((chap) => {
+                if( chap[0] == currentChapter) {
+                    return chap;
+                }
+            });
+        }
         return(
             <div className="reader">
-                READER!
             </div>
         );
     }
