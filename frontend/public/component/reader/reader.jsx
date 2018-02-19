@@ -1,11 +1,23 @@
 import React from "react";
+import { Redirect } from "react-router-dom";
 
 import Image from "../basic/image";
 
 class Reader extends React.Component {
-    constructor({manga, currentChapter}){
+    constructor({ manga, chapters, chapterImages, currentChapter, fetchChapter }){
         super();
-        this.state = { manga, currentChapter, currentPage: 0 };
+        this.state = { manga, chapters, currentChapter, fetchChapter, currentPage: 0 };
+    }
+
+    componentWillMount() {
+        const { chapters, currentChapter, fetchChapter } = this.state;
+        const chapter = chapters.filter(chap => {
+            if(chap[0] == currentChapter) return chap;
+        })[0];
+        
+        if(chapter) {
+            fetchChapter(chapter[3]);
+        }
     }
 
     componentWillReceiveProps(nextProps) {
@@ -15,21 +27,13 @@ class Reader extends React.Component {
     }
 
     render(){
-        const { manga, currentChapter, currentPage } = this.state;
-        let chapter = [];
-        if(manga) {
-            chapter = manga.chapters.filter((chap) => {
-                if( chap[0] == currentChapter) {
-                    return chap;
-                }
-            })[0];
-        }
+        const { manga, currentChapter, currentPage, chapterImages } = this.state;
 
-        return(
+        return manga ? (
             <div className="reader">
-                { chapter != [] ? <Image imageId={chapter[3]} title={chapter[2]} /> : ""}
+                
             </div>
-        );
+        ) : ( <Redirect to="/home" />);
     }
 }
 
