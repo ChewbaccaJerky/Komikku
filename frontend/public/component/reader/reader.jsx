@@ -13,6 +13,8 @@ class Reader extends React.Component {
     }
 
     render(){
+        const { manga, currentChapter, currentPage } = this.state;
+        console.log(manga);
         return(
             <div className="reader">
                 READER!
