@@ -38787,8 +38787,8 @@ var Reader = function (_React$Component) {
     }
 
     _createClass(Reader, [{
-        key: "componentWillMount",
-        value: function componentWillMount() {
+        key: "getChapters",
+        value: function getChapters() {
             var _state = this.state,
                 manga = _state.manga,
                 chapterNum = _state.chapterNum,
@@ -38801,6 +38801,11 @@ var Reader = function (_React$Component) {
                 })[0];
                 if (chapters) fetchChapter(chapters[3]);
             }
+        }
+    }, {
+        key: "componentWillMount",
+        value: function componentWillMount() {
+            this.getChapters();
         }
     }, {
         key: "componentWillReceiveProps",
@@ -38828,10 +38833,17 @@ var Reader = function (_React$Component) {
 
                     default:
                 }
-                console.log(pageNum);
-                return {
-                    currentPage: pageNum
-                };
+                console.log(state);
+                if (pageNum > state.chapters.length - 1) {
+                    return {
+                        currentPage: 0,
+                        currentChapter: state.currentChapter + 1
+                    };
+                } else {
+                    return {
+                        currentPage: pageNum
+                    };
+                }
             });
         }
     }, {
@@ -38849,6 +38861,11 @@ var Reader = function (_React$Component) {
                 "div",
                 { className: "reader" },
                 page === undefined ? "" : _react2.default.createElement(_image2.default, { imageId: page.image_url }),
+                _react2.default.createElement(
+                    "h1",
+                    { className: "page-num" },
+                    currentPage + 1
+                ),
                 _react2.default.createElement(
                     "button",
                     { onClick: function onClick() {

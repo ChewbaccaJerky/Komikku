@@ -13,7 +13,7 @@ class Reader extends React.Component {
         this.handleClick = this.handleClick.bind(this);
     }
 
-    componentWillMount() {
+    getChapters() {
         const { manga, chapterNum, fetchChapter } = this.state;
         this.setState({currentPage: 0});
         if(manga) {
@@ -22,6 +22,10 @@ class Reader extends React.Component {
             })[0];
             if(chapters) fetchChapter(chapters[3]);
         }
+    }
+
+    componentWillMount() {
+        this.getChapters();
     }
 
     componentWillReceiveProps() {
@@ -48,10 +52,18 @@ class Reader extends React.Component {
 
                 default:
             }
-            console.log(pageNum);
-            return {
-                currentPage: pageNum
-            };
+            console.log(state);
+            if( pageNum > state.chapters.length-1) {
+                return {
+                    currentPage: 0,
+                    currentChapter: state.currentChapter + 1
+                };
+            } 
+            else {
+                return {
+                    currentPage: pageNum
+                };
+            }
         });
     }
 
@@ -61,6 +73,7 @@ class Reader extends React.Component {
         return manga ? (
             <div className="reader">
                 { page === undefined ? "" : (<Image imageId={page.image_url} />)}
+                <h1 className="page-num">{(currentPage + 1)}</h1>
                 <button onClick={()=> this.handleClick("next")} className="next">NEXT</button>
                 <button onClick={()=> this.handleClick("prev")} className="prev">PREV</button>
             </div>

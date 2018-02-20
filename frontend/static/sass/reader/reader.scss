@@ -26,6 +26,7 @@
         color: #000;
         font-size: 3em;
         border: none;
+        padding: 0.5em;
     }
 
     .prev {
@@ -35,5 +36,15 @@
         color: #000;
         font-size: 3em;
         border: none;
+        padding: 0.5em;
+    }
+
+    .page-num{
+        grid-column: 1/2;
+        grid-row: 1/2;
+        color: #000;
+        font-size: 3em;
+        padding: 0.5em;
+        text-align: center;
     }
 }
