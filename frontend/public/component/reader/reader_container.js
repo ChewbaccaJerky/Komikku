@@ -1,13 +1,14 @@
 import { connect } from "react-redux";
 
-import { fetchChapter } from "../../action/chapter_action";
+import { fetchChapter, clear } from "../../action/chapter_action";
 import Reader from './reader';
 
 const mapStateToProps = (state, ownProps) => {
     const { alias, chapter } = ownProps.match.params;
     const manga = state.entities.mangas[alias];
     const chapters = state.entities.chapter;
-    
+    console.dir(state);
+    console.dir(ownProps);
     return {
         manga: manga,
         chapterNum: chapter,

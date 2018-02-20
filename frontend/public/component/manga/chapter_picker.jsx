@@ -17,8 +17,13 @@ class ChapterPicker extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(this.state.chapters.length !== nextProps.chapters.length) {
-            this.setState({ chapters: nextProps.chapters, selectedChapter: nextProps.chapters[0][0] });
+        if(nextProps.chapters.length !== 0) {
+            this.setState((state, props) => {
+                return {
+                    chapters: props.chapters,
+                    selectedChapter: props.chapters[0][0]
+                };
+            });
         }
     }
 
@@ -38,6 +43,13 @@ class ChapterPicker extends React.Component {
             return (<option key={chapter[0]} value={chapter[0]}>{alias + " " + chapter[0]}</option>);
         });
         
+        if(options.length === 0 ) {
+            return (
+                ""
+            );
+
+        }
+
         return fireRedirect ? (<Redirect to={ "/manga/" + alias + "/" + selectedChapter } />) : (
             <div className="chapter-picker">
                <form onSubmit={this.handleSubmit}>

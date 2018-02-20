@@ -1,13 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { merge } from "lodash";
 
 import Image from "../basic/image";
 
 class Reader extends React.Component {
-    constructor({manga, chapterNum, chapters, fetchChapter}){
+    constructor({manga, chapterNum, chapters, fetchChapter, clear}){
         super();
         
-        this.state = { manga, chapterNum, chapters, fetchChapter, currentPage: 0 };
+        this.state = { manga, chapterNum, chapters, fetchChapter, clear, currentPage: 0 };
     }
 
     componentWillMount() {
@@ -17,18 +18,18 @@ class Reader extends React.Component {
             const chapters = manga.chapters.filter(chap => {
                 if(chap[0] == chapterNum) return chap;
             })[0];
-            if(chapters[3]) fetchChapter(chapters[3]);
+            if(chapters) fetchChapter(chapters[3]);
         }
     }
 
-    // make sure all values in state are changed
-    componentWillReceiveProps(nextProps) {
-        const { currentChapter, chapters, manga } = this.state;
-        if( (currentChapter !== nextProps.currentChapter) || ( chapters.length !== nextProps.chapters.length)) {
-            this.setState({currentChapter: nextProps.currentChapter, chapters: nextProps.chapters});
-        }
-
-        console.log(manga === nextProps.manga);
+    componentWillReceiveProps() {
+        this.setState((state, props) => {
+            return {
+                manga: props.manga,
+                chapterNum: props.chapterNum,
+                chapters: props.chapters    
+            };
+        });
     }
 
     render(){

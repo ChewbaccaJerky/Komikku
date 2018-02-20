@@ -1,4 +1,5 @@
-import { RECEIVE_CHAPTER } from "../action/chapter_action";
+import { RECEIVE_CHAPTER, CLEAR_CHAPTER } from "../action/chapter_action";
+
 import { merge } from "lodash";
 const defaultState = [];
 
@@ -9,6 +10,9 @@ const ChapterReducer = (oldState = defaultState, action) => {
         case RECEIVE_CHAPTER:
             const newState = merge([], oldState, action.chapter);
             return newState;
+            
+        case CLEAR_CHAPTER:
+            return defaultState;
             
         default:
             return oldState;
