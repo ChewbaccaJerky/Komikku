@@ -188,7 +188,8 @@ button {
   .reader .image {
     grid-column: 2/3;
     grid-row: 1/6;
-    height: 100%; }
+    height: 100%;
+    width: auto; }
   .reader .next {
     grid-column: 3/4;
     grid-row: 5/6;
