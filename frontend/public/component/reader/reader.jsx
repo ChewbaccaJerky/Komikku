@@ -6,19 +6,19 @@ import { merge } from "lodash";
 import Image from "../basic/image";
 
 class Reader extends React.Component {
-    constructor({manga, chapterNum, chapters, fetchChapter, clear}){
+    constructor({manga, currentChapter, chapters, fetchChapter, clear}){
         super();
         
-        this.state = { manga, chapterNum, chapters, fetchChapter, clear, currentPage: 0 };
+        this.state = { manga, currentChapter, chapters: [], fetchChapter, clear, currentPage: 0 };
         this.handleClick = this.handleClick.bind(this);
     }
 
     getChapters() {
-        const { manga, chapterNum, fetchChapter } = this.state;
+        const { manga, currentChapter, fetchChapter } = this.state;
         this.setState({currentPage: 0});
         if(manga) {
             const chapters = manga.chapters.filter(chap => {
-                if(chap[0] == chapterNum) return chap;
+                if(chap[0] == currentChapter) return chap;
             })[0];
             if(chapters) fetchChapter(chapters[3]);
         }
@@ -32,7 +32,7 @@ class Reader extends React.Component {
         this.setState((state, props) => {
             return {
                 manga: props.manga,
-                chapterNum: props.chapterNum,
+                currentChapter: props.currentChapter,
                 chapters: props.chapters    
             };
         });

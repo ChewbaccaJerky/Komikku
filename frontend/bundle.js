@@ -38718,7 +38718,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     var chapters = state.entities.chapter;
     return {
         manga: manga,
-        chapterNum: chapter,
+        currentChapter: chapter,
         chapters: chapters
     };
 };
@@ -38776,7 +38776,7 @@ var Reader = function (_React$Component) {
 
     function Reader(_ref) {
         var manga = _ref.manga,
-            chapterNum = _ref.chapterNum,
+            currentChapter = _ref.currentChapter,
             chapters = _ref.chapters,
             fetchChapter = _ref.fetchChapter,
             clear = _ref.clear;
@@ -38785,7 +38785,7 @@ var Reader = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Reader.__proto__ || Object.getPrototypeOf(Reader)).call(this));
 
-        _this.state = { manga: manga, chapterNum: chapterNum, chapters: chapters, fetchChapter: fetchChapter, clear: clear, currentPage: 0 };
+        _this.state = { manga: manga, currentChapter: currentChapter, chapters: [], fetchChapter: fetchChapter, clear: clear, currentPage: 0 };
         _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
@@ -38795,13 +38795,13 @@ var Reader = function (_React$Component) {
         value: function getChapters() {
             var _state = this.state,
                 manga = _state.manga,
-                chapterNum = _state.chapterNum,
+                currentChapter = _state.currentChapter,
                 fetchChapter = _state.fetchChapter;
 
             this.setState({ currentPage: 0 });
             if (manga) {
                 var chapters = manga.chapters.filter(function (chap) {
-                    if (chap[0] == chapterNum) return chap;
+                    if (chap[0] == currentChapter) return chap;
                 })[0];
                 if (chapters) fetchChapter(chapters[3]);
             }
@@ -38817,7 +38817,7 @@ var Reader = function (_React$Component) {
             this.setState(function (state, props) {
                 return {
                     manga: props.manga,
-                    chapterNum: props.chapterNum,
+                    currentChapter: props.currentChapter,
                     chapters: props.chapters
                 };
             });

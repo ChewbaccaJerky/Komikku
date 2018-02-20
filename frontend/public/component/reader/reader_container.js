@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     const chapters = state.entities.chapter;
     return {
         manga: manga,
-        chapterNum: chapter,
+        currentChapter: chapter,
         chapters: chapters
     };
 };

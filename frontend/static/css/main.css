@@ -16,6 +16,8 @@ button {
   cursor: pointer;
   padding: 0;
   border-radius: 0; }
+  button:focus {
+    outline: 0; }
 
 /* COMPONENTS */
 .navbar {
