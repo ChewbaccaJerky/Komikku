@@ -6,18 +6,12 @@ import Reader from './reader';
 const mapStateToProps = (state, ownProps) => {
     const { alias, chapter } = ownProps.match.params;
     const manga = state.entities.mangas[alias];
-    let chapters = [];
-    const chapterImages = state.entities.chapter;
-   
-    if(manga) {
-        chapters = manga.chapters;
-    }
-
+    const chapters = state.entities.chapter;
+    
     return {
         manga: manga,
-        currentChapter: chapter,
-        chapters: chapters,
-        chapterImages: chapterImages
+        chapterNum: chapter,
+        chapters: chapters
     };
 };
 
