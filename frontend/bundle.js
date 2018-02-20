@@ -38266,6 +38266,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     return {
         fetchMangasByPage: function fetchMangasByPage(page) {
             return dispatch((0, _manga_action.fetchMangasByPage)(page));
+        },
+        fetchAllMangas: function fetchAllMangas() {
+            return dispatch((0, _manga_action.fetchAllMangas)());
         }
     };
 };
@@ -38317,6 +38320,7 @@ var MangaIndex = function (_React$Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.fetchMangasByPage(this.props.page);
+            // this.props.fetchAllMangas();
         }
     }, {
         key: 'componentWillReceiveProps',
@@ -38833,7 +38837,7 @@ var Reader = function (_React$Component) {
 
                     default:
                 }
-                console.log(state);
+
                 if (pageNum > state.chapters.length - 1) {
                     return {
                         currentPage: 0,

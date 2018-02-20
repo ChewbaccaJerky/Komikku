@@ -6,7 +6,7 @@ class Api::MangasController < ApplicationController
 
   def index
 
-    url = "https://www.mangaeden.com/api/list/1/"
+    url = "https://www.mangaeden.com/api/list/0/"
     
     response = RestClient.get url
     @mangas = JSON.parse(response.body)
@@ -14,7 +14,7 @@ class Api::MangasController < ApplicationController
   end
 
   def page
-    url = "https://www.mangaeden.com/api/list/1/"
+    url = "https://www.mangaeden.com/api/list/0/"
 
     response = RestClient.get url, {params: {p: params[:id], l: 25}}
     @mangas = JSON.parse(response.body)

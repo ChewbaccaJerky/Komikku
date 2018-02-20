@@ -52,7 +52,7 @@ class Reader extends React.Component {
 
                 default:
             }
-            console.log(state);
+
             if( pageNum > state.chapters.length-1) {
                 return {
                     currentPage: 0,
