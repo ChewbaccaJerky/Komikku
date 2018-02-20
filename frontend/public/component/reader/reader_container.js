@@ -7,8 +7,6 @@ const mapStateToProps = (state, ownProps) => {
     const { alias, chapter } = ownProps.match.params;
     const manga = state.entities.mangas[alias];
     const chapters = state.entities.chapter;
-    console.dir(state);
-    console.dir(ownProps);
     return {
         manga: manga,
         chapterNum: chapter,

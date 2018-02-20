@@ -1,4 +1,5 @@
 import React from "react";
+import FontAwesome from "react-fontawesome";
 import { Redirect } from "react-router-dom";
 import { merge } from "lodash";
 
@@ -9,6 +10,7 @@ class Reader extends React.Component {
         super();
         
         this.state = { manga, chapterNum, chapters, fetchChapter, clear, currentPage: 0 };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentWillMount() {
@@ -32,12 +34,35 @@ class Reader extends React.Component {
         });
     }
 
+    handleClick(field){
+        this.setState(state => {
+            let pageNum = state.currentPage;
+            switch(field) {
+                case "next":
+                    pageNum++;
+                    break;
+                case "prev":
+                    if(pageNum !== 0)
+                        pageNum--;
+                    break;
+
+                default:
+            }
+            console.log(pageNum);
+            return {
+                currentPage: pageNum
+            };
+        });
+    }
+
     render(){
         const { manga, chapters, currentPage } = this.state;
         const page = chapters[currentPage];
         return manga ? (
             <div className="reader">
                 { page === undefined ? "" : (<Image imageId={page.image_url} />)}
+                <button onClick={()=> this.handleClick("next")} className="next">NEXT</button>
+                <button onClick={()=> this.handleClick("prev")} className="prev">PREV</button>
             </div>
         ) : ( <Redirect to="/home" />);
     }
