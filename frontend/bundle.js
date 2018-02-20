@@ -38763,6 +38763,7 @@ var Reader = function (_React$Component) {
                 chapterNum = _state.chapterNum,
                 fetchChapter = _state.fetchChapter;
 
+            this.setState({ currentPage: 0 });
             if (manga) {
                 var chapters = manga.chapters.filter(function (chap) {
                     if (chap[0] == chapterNum) return chap;
@@ -38770,22 +38771,37 @@ var Reader = function (_React$Component) {
                 if (chapters[3]) fetchChapter(chapters[3]);
             }
         }
+
+        // make sure all values in state are changed
+
     }, {
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps(nextProps) {
-            console.log(nextProps);
             var _state2 = this.state,
                 currentChapter = _state2.currentChapter,
-                chapters = _state2.chapters;
+                chapters = _state2.chapters,
+                manga = _state2.manga;
 
-            if (currentChapter !== nextProps.currentChapter || chapters.length !== nextProps.chapters.length) this.setState({ currentChapter: nextProps.currentChapter, chapters: nextProps.chapters });
+            if (currentChapter !== nextProps.currentChapter || chapters.length !== nextProps.chapters.length) {
+                this.setState({ currentChapter: nextProps.currentChapter, chapters: nextProps.chapters });
+            }
+
+            console.log(manga === nextProps.manga);
         }
     }, {
         key: "render",
         value: function render() {
-            var manga = this.state.manga;
+            var _state3 = this.state,
+                manga = _state3.manga,
+                chapters = _state3.chapters,
+                currentPage = _state3.currentPage;
 
-            return manga ? _react2.default.createElement("div", { className: "reader" }) : _react2.default.createElement(_reactRouterDom.Redirect, { to: "/home" });
+            var page = chapters[currentPage];
+            return manga ? _react2.default.createElement(
+                "div",
+                { className: "reader" },
+                page === undefined ? "" : _react2.default.createElement(_image2.default, { imageId: page.image_url })
+            ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: "/home" });
         }
     }]);
 
