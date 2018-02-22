@@ -15,6 +15,7 @@ class Reader extends React.Component {
 
     getChapters() {
         const { manga, currentChapter, fetchChapter } = this.state;
+        // console.dir(currentChapter);
         this.setState({currentPage: 0});
         if(manga) {
             const chapters = manga.chapters.filter(chap => {

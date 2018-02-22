@@ -34,7 +34,7 @@ class ChapterPicker extends React.Component {
 
     handleChange(e) {
         e.preventDefault();
-        this.setState({selectedChapter: e.currentTarget});
+        this.setState({selectedChapter: e.currentTarget.value});
     }
 
     render(){
