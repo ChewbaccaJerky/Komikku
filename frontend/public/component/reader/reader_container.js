@@ -8,19 +8,23 @@ import Reader from './reader';
 const mapStateToProps = (state, ownProps) => {
     const { current_chapter, current_manga } = state.util;
     const manga = state.entities.mangas[current_manga];
-    const chapters = state.entities.chapter;
-    // console.dir(current_chapter);
+    const pages = state.entities.chapter;
+    const chapterId = manga && manga.chapters ? manga.chapters.filter(chap => {
+        if(chap[0] === current_chapter) return chap[3];
+    })[0][3] : "";
+
     return {
         manga: manga,
         currentChapter: current_chapter,
-        chapters: chapters
+        pages: pages,
+        chapterId: chapterId
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
-        fetchChapter: (chapterId) => dispatch(fetchChapter(chapterId)),
+        fetchPages: (chapterId) => dispatch(fetchChapter(chapterId)),
         setCurrentChapter: (chapterNum) => dispatch(setCurrentChapter(chapterNum))
     };
 };

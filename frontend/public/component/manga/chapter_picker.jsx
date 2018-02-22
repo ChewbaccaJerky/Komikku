@@ -24,7 +24,7 @@ class ChapterPicker extends React.Component {
             this.setState((state, props) => {
                 return {
                     chapters: props.chapters,
-                    selectedChapter: props.chapters[0][0]
+                    selectedChapter: props.selectedChapter
                 };
             });
         }
@@ -37,7 +37,6 @@ class ChapterPicker extends React.Component {
 
     handleChange(e) {
         e.preventDefault();
-        console.dir(this.state);
         const chapter = parseInt(e.currentTarget.value);
         this.setState({selectedChapter: chapter});
         this.state.setCurrentChapter(chapter);
@@ -58,12 +57,12 @@ class ChapterPicker extends React.Component {
         
         return fireRedirect ? (<Redirect to="/reader" />) : (
             <div className="chapter-picker">
-               <form onSubmit={this.handleSubmit}>
+                <div className="container">
                     <select onChange={this.handleChange}>
-                        { options }
+                            { options }
                     </select>
-                <button type="submit">READ</button>
-               </form>
+                    <button><Link to="/reader"> READ </Link></button>
+                </div>
             </div>
         );
     }

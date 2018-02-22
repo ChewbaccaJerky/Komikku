@@ -5,9 +5,11 @@ import { setCurrentChapter } from "../../action/util_action";
 
 const mapStateToProps = (state, ownProps) => {
     const alias = state.util.current_manga;
+    const chapters = state.entities.mangas[alias]
+        ? state.entities.mangas[alias].chapters : [];
     return {
         alias: alias,
-        chapters: state.entities.mangas[alias].chapters,
+        chapters: chapters,
         selectedChapter: state.util.current_chapter
     };
 };
