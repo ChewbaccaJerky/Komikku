@@ -4,18 +4,18 @@ import { Redirect } from "react-router-dom";
 import { merge } from "lodash";
 
 import Image from "../basic/image";
+import ChapterPickerContainer from "../manga/chapter_picker_container";
 
 class Reader extends React.Component {
-    constructor({manga, currentChapter, chapters, fetchChapter, clear}){
+    constructor({manga, currentChapter, chapters, fetchChapter, clear }){
         super();
         
-        this.state = { manga, currentChapter, chapters: [], fetchChapter, clear, currentPage: 0 };
+        this.state = { manga, currentChapter, chapters: [], fetchChapter, clear, currentPage: 0, nextChapter: false };
         this.handleClick = this.handleClick.bind(this);
     }
 
     getChapters() {
         const { manga, currentChapter, fetchChapter } = this.state;
-        // console.dir(currentChapter);
         this.setState({currentPage: 0});
         if(manga) {
             const chapters = manga.chapters.filter(chap => {
@@ -31,6 +31,7 @@ class Reader extends React.Component {
 
     componentWillReceiveProps() {
         this.setState((state, props) => {
+            this.getChapters();
             return {
                 manga: props.manga,
                 currentChapter: props.currentChapter,
@@ -55,10 +56,15 @@ class Reader extends React.Component {
             }
 
             if( pageNum > state.chapters.length-1) {
-                return {
-                    currentPage: 0,
-                    currentChapter: state.currentChapter + 1
-                };
+                let chap = state.currentChapter;
+                
+                if(parseInt(chap) + 1 < state.manga.chapters.length) {
+                    chap = parseInt(chap) + 1;
+                    return {
+                        currentChapter: chap,
+                        currentPage: 0
+                    };
+                }
             } 
             else {
                 return {
@@ -69,14 +75,16 @@ class Reader extends React.Component {
     }
 
     render(){
-        const { manga, chapters, currentPage } = this.state;
+        const { manga, chapters, currentPage, nextChapter, currentChapter } = this.state;
         const page = chapters[currentPage];
+        
         return manga ? (
             <div className="reader">
                 { page === undefined ? "" : (<Image imageId={page.image_url} />)}
                 <h1 className="page-num">{(currentPage + 1)}</h1>
                 <button onClick={()=> this.handleClick("next")} className="next">NEXT</button>
                 <button onClick={()=> this.handleClick("prev")} className="prev">PREV</button>
+                <ChapterPickerContainer />
             </div>
         ) : ( <Redirect to="/home" />);
     }

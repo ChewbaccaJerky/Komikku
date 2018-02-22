@@ -10,7 +10,6 @@ class MangaIndex extends React.Component {
 
     componentWillMount(){
         this.props.fetchMangasByPage(this.props.page);
-        // this.props.fetchAllMangas();
     }
 
     componentWillReceiveProps(nextProps) {

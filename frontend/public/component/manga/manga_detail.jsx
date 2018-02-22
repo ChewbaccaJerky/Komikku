@@ -2,17 +2,18 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import Image from '../basic/image';
-import ChapterPicker from './chapter_picker';
+import ChapterPickerContainer from './chapter_picker_container';
 
 class MangaDetail extends React.Component {
-    constructor({manga, fetchManga }){
+    constructor({manga, fetchManga, setCurrentManga, alias }){
         super();
-        this.state = { manga, fetchManga };
+        this.state = { manga, fetchManga, setCurrentManga, alias };
     }
 
     componentWillMount(){
         if(this.props.manga) {
             this.state.fetchManga(this.props.manga.id);
+            this.state.setCurrentManga(this.state.alias);
         }
     }
 
@@ -36,7 +37,7 @@ class MangaDetail extends React.Component {
                 <div className="categories">
                     <span>Categories:</span> { categories }
                 </div>
-                <ChapterPicker alias={manga.alias} chapters={manga.chapters} />
+                <ChapterPickerContainer />
             </div>
         );
     }

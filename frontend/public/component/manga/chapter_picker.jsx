@@ -1,15 +1,18 @@
 import React from "react";
 import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 
 class ChapterPicker extends React.Component {
-    constructor({alias, chapters = []}) {
+    constructor({alias, chapters = [], selectedChapter, setCurrentChapter}) {
         super();
 
         this.state = { 
-            alias: alias,
-            chapters: chapters,
-            selectedChapter: null,
-            fireRedirect: false 
+            alias,
+            chapters,
+            selectedChapter,
+            setCurrentChapter,
+            fireRedirect: false,
+
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,7 +37,10 @@ class ChapterPicker extends React.Component {
 
     handleChange(e) {
         e.preventDefault();
-        this.setState({selectedChapter: e.currentTarget.value});
+        console.dir(this.state);
+        const chapter = parseInt(e.currentTarget.value);
+        this.setState({selectedChapter: chapter});
+        this.state.setCurrentChapter(chapter);
     }
 
     render(){
@@ -42,15 +48,15 @@ class ChapterPicker extends React.Component {
         const options = this.state.chapters.map((chapter) => {
             return (<option key={chapter[0]} value={chapter[0]}>{alias + " " + chapter[0]}</option>);
         });
-        
+
         if(options.length === 0 ) {
             return (
                 ""
             );
 
         }
-
-        return fireRedirect ? (<Redirect to={ "/manga/" + alias + "/" + selectedChapter } />) : (
+        
+        return fireRedirect ? (<Redirect to="/reader" />) : (
             <div className="chapter-picker">
                <form onSubmit={this.handleSubmit}>
                     <select onChange={this.handleChange}>

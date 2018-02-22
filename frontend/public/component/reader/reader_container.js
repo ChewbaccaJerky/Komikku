@@ -1,15 +1,18 @@
 import { connect } from "react-redux";
 
 import { fetchChapter, clear } from "../../action/chapter_action";
+import { setCurrentChapter } from "../../action/util_action";
+
 import Reader from './reader';
 
 const mapStateToProps = (state, ownProps) => {
-    const { alias, chapter } = ownProps.match.params;
-    const manga = state.entities.mangas[alias];
+    const { current_chapter, current_manga } = state.util;
+    const manga = state.entities.mangas[current_manga];
     const chapters = state.entities.chapter;
+    // console.dir(current_chapter);
     return {
         manga: manga,
-        currentChapter: chapter,
+        currentChapter: current_chapter,
         chapters: chapters
     };
 };
@@ -17,7 +20,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
-        fetchChapter: (chapterId) => dispatch(fetchChapter(chapterId))
+        fetchChapter: (chapterId) => dispatch(fetchChapter(chapterId)),
+        setCurrentChapter: (chapterNum) => dispatch(setCurrentChapter(chapterNum))
     };
 };
 

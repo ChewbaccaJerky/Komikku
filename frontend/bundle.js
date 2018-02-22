@@ -32722,7 +32722,9 @@ var _lodash = __webpack_require__(7);
 var _util_action = __webpack_require__(89);
 
 var defaultState = {
-    page: 0
+    page: 0,
+    current_manga: "",
+    current_chapter: 0
 };
 
 var UtilReducer = function UtilReducer() {
@@ -32730,10 +32732,23 @@ var UtilReducer = function UtilReducer() {
     var action = arguments[1];
 
     Object.freeze(oldState);
-
+    var newState = void 0;
     switch (action.type) {
         case _util_action.RECEIVE_PAGE:
             return (0, _lodash.merge)({}, action.page);
+
+        case _util_action.CLEAR:
+            return defaultState;
+
+        case _util_action.SET_CURRENT_CHAPTER:
+            newState = (0, _lodash.merge)({}, oldState);
+            newState.current_chapter = action.current_chapter;
+            return newState;
+
+        case _util_action.SET_CURRENT_MANGA:
+            newState = (0, _lodash.merge)({}, oldState);
+            newState.current_manga = action.current_manga;
+            return newState;
 
         default:
             return oldState;
@@ -32753,6 +32768,25 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 var RECEIVE_PAGE = exports.RECEIVE_PAGE = "RECEIVE_PAGE";
+var SET_CURRENT_CHAPTER = exports.SET_CURRENT_CHAPTER = "SET_CURRENT_CHAPTER";
+var SET_CURRENT_MANGA = exports.SET_CURRENT_MANGA = "SET_CURRENT_MANGA";
+var CLEAR = exports.CLEAR = "CLEAR";
+var INCREMENT_CHAPTER = exports.INCREMENT_CHAPTER = "INCREMENT_CHAPTER";
+var DECREMENT_CHAPTER = exports.DECREMENT_CHAPTER = "DECREMENT_CHAPTER";
+
+var changeCurrentManga = function changeCurrentManga(manga) {
+    return {
+        type: SET_CURRENT_MANGA,
+        current_manga: manga
+    };
+};
+
+var changeCurrentChapter = function changeCurrentChapter(chapterNum) {
+    return {
+        type: SET_CURRENT_CHAPTER,
+        current_chapter: chapterNum
+    };
+};
 
 var receivePage = function receivePage(page) {
     return {
@@ -32764,6 +32798,18 @@ var receivePage = function receivePage(page) {
 var changePage = exports.changePage = function changePage(page) {
     return function (dispatch) {
         dispatch(receivePage(page));
+    };
+};
+
+var setCurrentManga = exports.setCurrentManga = function setCurrentManga(mangaAlias) {
+    return function (dispatch) {
+        dispatch(changeCurrentManga(mangaAlias));
+    };
+};
+
+var setCurrentChapter = exports.setCurrentChapter = function setCurrentChapter(chapterNum) {
+    return function (dispatch) {
+        dispatch(changeCurrentChapter(chapterNum));
     };
 };
 
@@ -37866,7 +37912,7 @@ var App = function App() {
             _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _session_form_container2.default }),
             _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/home', component: _manga_index_container2.default }),
             _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/manga/:alias', component: _manga_detail_container2.default }),
-            _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/manga/:alias/:chapter', component: _reader_container2.default })
+            _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/reader', component: _reader_container2.default })
         )
     );
 };
@@ -38320,7 +38366,6 @@ var MangaIndex = function (_React$Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.fetchMangasByPage(this.props.page);
-            // this.props.fetchAllMangas();
         }
     }, {
         key: 'componentWillReceiveProps',
@@ -38416,13 +38461,16 @@ var _manga_detail = __webpack_require__(138);
 
 var _manga_detail2 = _interopRequireDefault(_manga_detail);
 
+var _util_action = __webpack_require__(89);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
     var alias = ownProps.match.params.alias;
     var manga = state.entities.mangas ? state.entities.mangas[alias] : null;
     return {
-        manga: manga
+        manga: manga,
+        alias: alias
     };
 };
 
@@ -38433,6 +38481,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
         },
         fetchAllMangas: function fetchAllMangas() {
             return dispatch((0, _manga_action.fetchAllMangas)());
+        },
+        setCurrentManga: function setCurrentManga(mangaAlias) {
+            return dispatch((0, _util_action.setCurrentManga)(mangaAlias));
         }
     };
 };
@@ -38462,9 +38513,9 @@ var _image = __webpack_require__(59);
 
 var _image2 = _interopRequireDefault(_image);
 
-var _chapter_picker = __webpack_require__(139);
+var _chapter_picker_container = __webpack_require__(153);
 
-var _chapter_picker2 = _interopRequireDefault(_chapter_picker);
+var _chapter_picker_container2 = _interopRequireDefault(_chapter_picker_container);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -38479,13 +38530,15 @@ var MangaDetail = function (_React$Component) {
 
     function MangaDetail(_ref) {
         var manga = _ref.manga,
-            fetchManga = _ref.fetchManga;
+            fetchManga = _ref.fetchManga,
+            setCurrentManga = _ref.setCurrentManga,
+            alias = _ref.alias;
 
         _classCallCheck(this, MangaDetail);
 
         var _this = _possibleConstructorReturn(this, (MangaDetail.__proto__ || Object.getPrototypeOf(MangaDetail)).call(this));
 
-        _this.state = { manga: manga, fetchManga: fetchManga };
+        _this.state = { manga: manga, fetchManga: fetchManga, setCurrentManga: setCurrentManga, alias: alias };
         return _this;
     }
 
@@ -38494,6 +38547,7 @@ var MangaDetail = function (_React$Component) {
         value: function componentWillMount() {
             if (this.props.manga) {
                 this.state.fetchManga(this.props.manga.id);
+                this.state.setCurrentManga(this.state.alias);
             }
         }
     }, {
@@ -38557,7 +38611,7 @@ var MangaDetail = function (_React$Component) {
                     ' ',
                     categories
                 ),
-                _react2.default.createElement(_chapter_picker2.default, { alias: manga.alias, chapters: manga.chapters })
+                _react2.default.createElement(_chapter_picker_container2.default, null)
             );
         }
     }]);
@@ -38586,6 +38640,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(58);
 
+var _reactRouterDom = __webpack_require__(6);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38600,7 +38656,9 @@ var ChapterPicker = function (_React$Component) {
     function ChapterPicker(_ref) {
         var alias = _ref.alias,
             _ref$chapters = _ref.chapters,
-            chapters = _ref$chapters === undefined ? [] : _ref$chapters;
+            chapters = _ref$chapters === undefined ? [] : _ref$chapters,
+            selectedChapter = _ref.selectedChapter,
+            setCurrentChapter = _ref.setCurrentChapter;
 
         _classCallCheck(this, ChapterPicker);
 
@@ -38609,8 +38667,10 @@ var ChapterPicker = function (_React$Component) {
         _this.state = {
             alias: alias,
             chapters: chapters,
-            selectedChapter: null,
+            selectedChapter: selectedChapter,
+            setCurrentChapter: setCurrentChapter,
             fireRedirect: false
+
         };
 
         _this.handleSubmit = _this.handleSubmit.bind(_this);
@@ -38640,7 +38700,10 @@ var ChapterPicker = function (_React$Component) {
         key: "handleChange",
         value: function handleChange(e) {
             e.preventDefault();
-            this.setState({ selectedChapter: e.currentTarget.value });
+            console.dir(this.state);
+            var chapter = parseInt(e.currentTarget.value);
+            this.setState({ selectedChapter: chapter });
+            this.state.setCurrentChapter(chapter);
         }
     }, {
         key: "render",
@@ -38662,7 +38725,7 @@ var ChapterPicker = function (_React$Component) {
                 return "";
             }
 
-            return fireRedirect ? _react2.default.createElement(_reactRouter.Redirect, { to: "/manga/" + alias + "/" + selectedChapter }) : _react2.default.createElement(
+            return fireRedirect ? _react2.default.createElement(_reactRouter.Redirect, { to: "/reader" }) : _react2.default.createElement(
                 "div",
                 { className: "chapter-picker" },
                 _react2.default.createElement(
@@ -38703,6 +38766,8 @@ var _reactRedux = __webpack_require__(8);
 
 var _chapter_action = __webpack_require__(24);
 
+var _util_action = __webpack_require__(89);
+
 var _reader = __webpack_require__(141);
 
 var _reader2 = _interopRequireDefault(_reader);
@@ -38710,15 +38775,16 @@ var _reader2 = _interopRequireDefault(_reader);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state, ownProps) {
-    var _ownProps$match$param = ownProps.match.params,
-        alias = _ownProps$match$param.alias,
-        chapter = _ownProps$match$param.chapter;
+    var _state$util = state.util,
+        current_chapter = _state$util.current_chapter,
+        current_manga = _state$util.current_manga;
 
-    var manga = state.entities.mangas[alias];
+    var manga = state.entities.mangas[current_manga];
     var chapters = state.entities.chapter;
+    // console.dir(current_chapter);
     return {
         manga: manga,
-        currentChapter: chapter,
+        currentChapter: current_chapter,
         chapters: chapters
     };
 };
@@ -38728,6 +38794,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     return {
         fetchChapter: function fetchChapter(chapterId) {
             return dispatch((0, _chapter_action.fetchChapter)(chapterId));
+        },
+        setCurrentChapter: function setCurrentChapter(chapterNum) {
+            return dispatch((0, _util_action.setCurrentChapter)(chapterNum));
         }
     };
 };
@@ -38763,6 +38832,10 @@ var _image = __webpack_require__(59);
 
 var _image2 = _interopRequireDefault(_image);
 
+var _chapter_picker_container = __webpack_require__(153);
+
+var _chapter_picker_container2 = _interopRequireDefault(_chapter_picker_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -38785,7 +38858,7 @@ var Reader = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Reader.__proto__ || Object.getPrototypeOf(Reader)).call(this));
 
-        _this.state = { manga: manga, currentChapter: currentChapter, chapters: [], fetchChapter: fetchChapter, clear: clear, currentPage: 0 };
+        _this.state = { manga: manga, currentChapter: currentChapter, chapters: [], fetchChapter: fetchChapter, clear: clear, currentPage: 0, nextChapter: false };
         _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
@@ -38797,7 +38870,6 @@ var Reader = function (_React$Component) {
                 manga = _state.manga,
                 currentChapter = _state.currentChapter,
                 fetchChapter = _state.fetchChapter;
-            // console.dir(currentChapter);
 
             this.setState({ currentPage: 0 });
             if (manga) {
@@ -38815,7 +38887,10 @@ var Reader = function (_React$Component) {
     }, {
         key: "componentWillReceiveProps",
         value: function componentWillReceiveProps() {
+            var _this2 = this;
+
             this.setState(function (state, props) {
+                _this2.getChapters();
                 return {
                     manga: props.manga,
                     currentChapter: props.currentChapter,
@@ -38840,10 +38915,15 @@ var Reader = function (_React$Component) {
                 }
 
                 if (pageNum > state.chapters.length - 1) {
-                    return {
-                        currentPage: 0,
-                        currentChapter: state.currentChapter + 1
-                    };
+                    var chap = state.currentChapter;
+
+                    if (parseInt(chap) + 1 < state.manga.chapters.length) {
+                        chap = parseInt(chap) + 1;
+                        return {
+                            currentChapter: chap,
+                            currentPage: 0
+                        };
+                    }
                 } else {
                     return {
                         currentPage: pageNum
@@ -38854,14 +38934,17 @@ var Reader = function (_React$Component) {
     }, {
         key: "render",
         value: function render() {
-            var _this2 = this;
+            var _this3 = this;
 
             var _state2 = this.state,
                 manga = _state2.manga,
                 chapters = _state2.chapters,
-                currentPage = _state2.currentPage;
+                currentPage = _state2.currentPage,
+                nextChapter = _state2.nextChapter,
+                currentChapter = _state2.currentChapter;
 
             var page = chapters[currentPage];
+
             return manga ? _react2.default.createElement(
                 "div",
                 { className: "reader" },
@@ -38874,17 +38957,18 @@ var Reader = function (_React$Component) {
                 _react2.default.createElement(
                     "button",
                     { onClick: function onClick() {
-                            return _this2.handleClick("next");
+                            return _this3.handleClick("next");
                         }, className: "next" },
                     "NEXT"
                 ),
                 _react2.default.createElement(
                     "button",
                     { onClick: function onClick() {
-                            return _this2.handleClick("prev");
+                            return _this3.handleClick("prev");
                         }, className: "prev" },
                     "PREV"
-                )
+                ),
+                _react2.default.createElement(_chapter_picker_container2.default, null)
             ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: "/home" });
         }
     }]);
@@ -54958,6 +55042,46 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+
+/***/ }),
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _reactRedux = __webpack_require__(8);
+
+var _chapter_picker = __webpack_require__(139);
+
+var _chapter_picker2 = _interopRequireDefault(_chapter_picker);
+
+var _util_action = __webpack_require__(89);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+    var alias = state.util.current_manga;
+    return {
+        alias: alias,
+        chapters: state.entities.mangas[alias].chapters,
+        selectedChapter: state.util.current_chapter
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        setCurrentChapter: function setCurrentChapter(chapterNum) {
+            return dispatch((0, _util_action.setCurrentChapter)(chapterNum));
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_chapter_picker2.default);
 
 /***/ })
 /******/ ]);

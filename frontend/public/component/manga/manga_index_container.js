@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 
 import { fetchMangasByPage, fetchAllMangas } from '../../action/manga_action';
+
 import MangaIndex from './manga_index';
 
 const mapStateToProps = (state, ownProps) => {
