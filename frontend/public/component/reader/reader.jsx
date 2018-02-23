@@ -94,34 +94,28 @@ import ChapterPickerContainer from "../manga/chapter_picker_container";
 // }
 
 class Reader extends React.Component {
-    constructor({manga, currentChapter, pages, chapterId, fetchPages, setCurrentChapter}) {
+    constructor({manga, pages, currentChapter, fetchPages, setCurrentChapter}) {
         super();
-        this.state = {
-            manga,
-            currentChapter,
-            pages,
-            chapterId,
-            fetchPages,
-            setCurrentChapter
-        };
+
+        this.state = {manga, currentPage: 0};
     }
 
     componentDidMount() {
-        const {fetchPages, chapterId} = this.state;
-        if(chapterId !== "") fetchPages(chapterId);
+        
     }
 
     componentWillReceiveProps(nextProps) {
-        
+        if( this.state.manga !== nextProps.manga ) {
+            const newProps = Object.assign({}, this.state, nextProps);
+            this.setState(newProps);
+        }
     }
 
     render(){
-        
-        return (
-            <div className="reader">
-                
-            </div>
-        );
+        const { manga } = this.state;
+
+        // manga must exist else redirect to home
+        return manga ? (<div className="reader">reader</div>) : (<Redirect to="/home" />);
     }
 }
 

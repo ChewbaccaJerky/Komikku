@@ -4,9 +4,9 @@ export const RECEIVE_CHAPTER = "RECEIVE_CHAPTER";
 export const RECEIVE_CHAPTER_ERRORS = "RECEIVE_CHAPTER_ERRORS";
 export const CLEAR_CHAPTER = "CLEAR_CHAPTER";
 
-export const  receiveChapter = chapter => ({
+export const  receivePages = pages => ({
     type: RECEIVE_CHAPTER,
-    chapter: chapter.chapter
+    chapter: pages.chapter
 });
 
 export const clearChapters = chapter => ({
@@ -18,9 +18,9 @@ const receiveErrors = errors => ({
     errors
 });
 
-export const fetchChapter = chapterId => dispatch => (
-    ChapterAPIUtil.fetchChapterImages(chapterId).then(chapter => (
-        dispatch(receiveChapter(chapter))
+export const fetchPages = chapterId => dispatch => (
+    ChapterAPIUtil.fetchChapterImages(chapterId).then(pages => (
+        dispatch(receivePages(pages))
     ), err => dispatch(receiveErrors(err)))
 );
 

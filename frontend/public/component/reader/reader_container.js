@@ -1,30 +1,26 @@
 import { connect } from "react-redux";
 
-import { fetchChapter, clear } from "../../action/chapter_action";
+import { fetchPages, clear } from "../../action/chapter_action";
 import { setCurrentChapter } from "../../action/util_action";
 
 import Reader from './reader';
 
 const mapStateToProps = (state, ownProps) => {
-    const { current_chapter, current_manga } = state.util;
-    const manga = state.entities.mangas[current_manga];
-    const pages = state.entities.chapter;
-    const chapterId = manga && manga.chapters ? manga.chapters.filter(chap => {
-        if(chap[0] === current_chapter) return chap[3];
-    })[0][3] : "";
-
+    const mangaName = state.util.current_manga;
+    const manga = state.entities.mangas[mangaName];
+    const pages = state.entities.chapters;
+    const currentChapter = state.util.current_chapter;
     return {
         manga: manga,
-        currentChapter: current_chapter,
         pages: pages,
-        chapterId: chapterId
+        currentChapter: currentChapter
     };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
-        fetchPages: (chapterId) => dispatch(fetchChapter(chapterId)),
+        fetchPages: (chapterId) => dispatch(fetchPages(chapterId)),
         setCurrentChapter: (chapterNum) => dispatch(setCurrentChapter(chapterNum))
     };
 };

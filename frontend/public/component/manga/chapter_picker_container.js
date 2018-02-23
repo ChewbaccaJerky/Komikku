@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 
 import ChapterPicker from "./chapter_picker";
 import { setCurrentChapter } from "../../action/util_action";
+import { fetchPages } from "../../action/chapter_action";
 
 const mapStateToProps = (state, ownProps) => {
     const alias = state.util.current_manga;
@@ -16,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setCurrentChapter: chapterNum => dispatch(setCurrentChapter(chapterNum))
+        setCurrentChapter: chapterNum => dispatch(setCurrentChapter(chapterNum)),
+        fetchPages: chapterId => dispatch(fetchPages(chapterId))
     };
 };
 

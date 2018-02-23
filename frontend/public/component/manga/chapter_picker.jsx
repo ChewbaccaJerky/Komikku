@@ -3,7 +3,7 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
 class ChapterPicker extends React.Component {
-    constructor({alias, chapters = [], selectedChapter, setCurrentChapter}) {
+    constructor({alias, chapters = [], selectedChapter, setCurrentChapter, fetchPages}) {
         super();
 
         this.state = { 
@@ -12,7 +12,6 @@ class ChapterPicker extends React.Component {
             selectedChapter,
             setCurrentChapter,
             fireRedirect: false,
-
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,32 +36,34 @@ class ChapterPicker extends React.Component {
 
     handleChange(e) {
         e.preventDefault();
-        const chapter = parseInt(e.currentTarget.value);
+        const chapter = e.currentTarget.value;
         this.setState({selectedChapter: chapter});
         this.state.setCurrentChapter(chapter);
     }
 
     render(){
         const {fireRedirect, selectedChapter, alias} = this.state;
-        const options = this.state.chapters.map((chapter) => {
-            return (<option key={chapter[0]} value={chapter[0]}>{alias + " " + chapter[0]}</option>);
-        });
 
-        if(options.length === 0 ) {
+        const options = this.state.chapters.map((chapter) => {
+            return (<option key={chapter} value={chapter[3]}>{alias + " " + chapter[0]}</option>);
+        });
+    
+        options.push((<option key="default" value="" selected="selected" disabled="disabled"> PICK A CHAPTER</option>));
+
+        if(options.length === 1 ) {
             return (
                 ""
             );
-
         }
         
         return fireRedirect ? (<Redirect to="/reader" />) : (
             <div className="chapter-picker">
-                <div className="container">
+                <form onSubmit={this.handleChange}>
                     <select onChange={this.handleChange}>
                             { options }
                     </select>
-                    <button><Link to="/reader"> READ </Link></button>
-                </div>
+                    <button>READ</button>
+                </form>
             </div>
         );
     }
