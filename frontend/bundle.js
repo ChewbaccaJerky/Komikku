@@ -38783,7 +38783,14 @@ var ChapterPicker = function (_React$Component) {
                 currentChapter = _state.currentChapter,
                 button = _state.button;
 
-            var options = this.state.chapters.map(function (chapter, idx) {
+            var options = [];
+            options.push(_react2.default.createElement(
+                "option",
+                { key: "default", value: "DEFAULT", selected: "selected", disabled: "disabled" },
+                " PICK A CHAPTER"
+            ));
+
+            var chapters = this.state.chapters.map(function (chapter, idx) {
 
                 return _react2.default.createElement(
                     "option",
@@ -38795,11 +38802,7 @@ var ChapterPicker = function (_React$Component) {
                 );
             });
 
-            options.push(_react2.default.createElement(
-                "option",
-                { key: "default", value: "DEFAULT", selected: "selected", disabled: "disabled" },
-                " PICK A CHAPTER"
-            ));
+            options = options.concat(chapters);
 
             if (options.length === 1) {
                 return "";

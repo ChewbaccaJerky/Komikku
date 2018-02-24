@@ -1,6 +1,6 @@
 @import "../_variables";
 
-$primary-color: rgba(255,255,255, 0.5);
+$primary-color: rgba(0, 0, 0, 0.5);
 
 .reader {
     grid-column: 2;
@@ -65,6 +65,7 @@ $primary-color: rgba(255,255,255, 0.5);
         form {
             // padding: 1em;
             select {
+                // background: rgba(255, 255, 255, 0.2);
                 width: 95%;
                 option {
 
