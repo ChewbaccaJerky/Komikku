@@ -8,9 +8,9 @@ import ChapterPickerContainer from "../manga/chapter_picker_container";
 
 
 class Reader extends React.Component {
-    constructor({manga, pages, currentChapter, fetchPages, setCurrentChapter}) {
+    constructor({manga, pages, currentChapter, fetchPages}) {
         super();
-        this.state = {manga, pages: [], currentChapter, fetchPages, setCurrentChapter, currentPage: 0};
+        this.state = {manga, pages: [], currentChapter, fetchPages, currentPage: 0};
 
         this.changePage = this.changePage.bind(this);
     }
@@ -40,20 +40,25 @@ class Reader extends React.Component {
 
     changePage(field) {
         const page = this.state.currentPage;
+
         switch(field){
             case "next":
-                if(page + 1 < this.state.pages.length)
+                if(page + 1 < this.state.pages.length) {
+                    window.document.getElementsByClassName("image-container")[0].scrollTop = 0;
                     this.setState({currentPage: page + 1});
+                }
+
                 break;
 
             case "prev":
-                if(this.state.currentPage - 1 >= 0)
+                if(this.state.currentPage - 1 >= 0) {
+                    window.document.getElementsByClassName("image-container")[0].scrollTop = 0;
                     this.setState({currentPage: page - 1});
+                }
                 break;
 
             default:
         }
-
     }
 
     render(){

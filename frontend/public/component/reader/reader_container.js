@@ -20,8 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
 
     return {
-        fetchPages: (chapterId) => dispatch(fetchPages(chapterId)),
-        setCurrentChapter: (chapterNum) => dispatch(setCurrentChapter(chapterNum))
+        fetchPages: (chapterId) => dispatch(fetchPages(chapterId))
     };
 };
 

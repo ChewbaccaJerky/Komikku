@@ -38774,8 +38774,8 @@ var ChapterPicker = function (_React$Component) {
             this.state.setCurrentChapter(chapter);
         }
     }, {
-        key: "render",
-        value: function render() {
+        key: "getOptions",
+        value: function getOptions() {
             var _state = this.state,
                 fireRedirect = _state.fireRedirect,
                 selectedChapter = _state.selectedChapter,
@@ -38790,21 +38790,34 @@ var ChapterPicker = function (_React$Component) {
                     {
                         key: chapter,
                         value: chapter[3],
-                        selected: chapter[3] === currentChapter ? "selected" : "",
-                        disabled: chapter[3] === currentChapter ? "disabled" : "" },
+                        selected: chapter[3] === currentChapter ? "selected" : "" },
                     alias + " " + (chapter[0] + 1)
                 );
             });
 
             options.push(_react2.default.createElement(
                 "option",
-                { key: "default", value: "", selected: "", disabled: "disabled" },
+                { key: "default", value: "DEFAULT", selected: "selected", disabled: "disabled" },
                 " PICK A CHAPTER"
             ));
 
             if (options.length === 1) {
                 return "";
             }
+
+            return options;
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _state2 = this.state,
+                fireRedirect = _state2.fireRedirect,
+                selectedChapter = _state2.selectedChapter,
+                alias = _state2.alias,
+                currentChapter = _state2.currentChapter,
+                button = _state2.button;
+
+            var options = this.getOptions();
 
             return fireRedirect ? _react2.default.createElement(_reactRouter.Redirect, { to: "/reader" }) : _react2.default.createElement(
                 "div",
@@ -38872,9 +38885,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
     return {
         fetchPages: function fetchPages(chapterId) {
             return dispatch((0, _chapter_action.fetchPages)(chapterId));
-        },
-        setCurrentChapter: function setCurrentChapter(chapterNum) {
-            return dispatch((0, _util_action.setCurrentChapter)(chapterNum));
         }
     };
 };
@@ -38929,14 +38939,13 @@ var Reader = function (_React$Component) {
         var manga = _ref.manga,
             pages = _ref.pages,
             currentChapter = _ref.currentChapter,
-            fetchPages = _ref.fetchPages,
-            setCurrentChapter = _ref.setCurrentChapter;
+            fetchPages = _ref.fetchPages;
 
         _classCallCheck(this, Reader);
 
         var _this = _possibleConstructorReturn(this, (Reader.__proto__ || Object.getPrototypeOf(Reader)).call(this));
 
-        _this.state = { manga: manga, pages: [], currentChapter: currentChapter, fetchPages: fetchPages, setCurrentChapter: setCurrentChapter, currentPage: 0 };
+        _this.state = { manga: manga, pages: [], currentChapter: currentChapter, fetchPages: fetchPages, currentPage: 0 };
 
         _this.changePage = _this.changePage.bind(_this);
         return _this;
@@ -38979,13 +38988,21 @@ var Reader = function (_React$Component) {
         key: "changePage",
         value: function changePage(field) {
             var page = this.state.currentPage;
+
             switch (field) {
                 case "next":
-                    if (page + 1 < this.state.pages.length) this.setState({ currentPage: page + 1 });
+                    if (page + 1 < this.state.pages.length) {
+                        window.document.getElementsByClassName("image-container")[0].scrollTop = 0;
+                        this.setState({ currentPage: page + 1 });
+                    }
+
                     break;
 
                 case "prev":
-                    if (this.state.currentPage - 1 >= 0) this.setState({ currentPage: page - 1 });
+                    if (this.state.currentPage - 1 >= 0) {
+                        window.document.getElementsByClassName("image-container")[0].scrollTop = 0;
+                        this.setState({ currentPage: page - 1 });
+                    }
                     break;
 
                 default:

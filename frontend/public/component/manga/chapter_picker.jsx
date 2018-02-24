@@ -55,26 +55,33 @@ class ChapterPicker extends React.Component {
         this.state.setCurrentChapter(chapter);
     }
 
-    render(){
+    getOptions() {
         const {fireRedirect, selectedChapter, alias, currentChapter, button} = this.state;
         const options = this.state.chapters.map((chapter, idx) => {
 
             return (<option 
                 key={chapter} 
                 value={chapter[3]} 
-                selected={ chapter[3] === currentChapter ? "selected" : ""} 
-                disabled={ chapter[3] === currentChapter ? "disabled" : ""}>
+                selected={ chapter[3] === currentChapter ? "selected" : ""} >
                     {alias + " " + (chapter[0] + 1)} 
                 </option>);
         });
-    
-        options.push((<option key="default" value="" selected="" disabled="disabled"> PICK A CHAPTER</option>));
+
+        options.push((<option key="default" value="DEFAULT" selected="selected" disabled="disabled"> PICK A CHAPTER</option>));
 
         if(options.length === 1 ) {
             return (
                 ""
             );
         }
+
+        return options;
+    }
+
+    render(){
+        const {fireRedirect, selectedChapter, alias, currentChapter, button} = this.state;
+        const options = this.getOptions();
+
         
         return fireRedirect ? (<Redirect to="/reader" />) : (
             <div className="chapter-picker">
