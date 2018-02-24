@@ -221,6 +221,6 @@ button {
     justify-content: center;
     align-items: center; }
     .reader .chapter-picker form select {
-      padding: 0; }
+      width: 95%; }
 
 /*# sourceMappingURL=main.css.map */
