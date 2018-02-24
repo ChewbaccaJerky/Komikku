@@ -3,17 +3,19 @@ import { Redirect } from "react-router";
 import { Link } from "react-router-dom";
 
 class ChapterPicker extends React.Component {
-    constructor({alias, chapters = [], selectedChapter, setCurrentChapter, fetchPages}) {
+    constructor({alias, chapters = [], selectedChapter, setCurrentChapter, fetchPages, currentChapter, button}) {
         super();
-
+        
         this.state = { 
             alias,
             chapters,
             selectedChapter,
             setCurrentChapter,
             fireRedirect: false,
+            currentChapter,
+            button: button
         };
-
+        console.log(button);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -25,6 +27,18 @@ class ChapterPicker extends React.Component {
                     chapters: props.chapters,
                     selectedChapter: props.selectedChapter
                 };
+            });
+        }
+
+        if(this.state.currentChapter !== nextProps.currentChapter) {
+            this.setState({
+                currentChapter: nextProps.currentChapter
+            });
+        }
+
+        if(this.state.button !== nextProps.button) {
+            this.setState({
+                button: nextProps.button
             });
         }
     }
@@ -42,13 +56,19 @@ class ChapterPicker extends React.Component {
     }
 
     render(){
-        const {fireRedirect, selectedChapter, alias} = this.state;
+        const {fireRedirect, selectedChapter, alias, currentChapter, button} = this.state;
+        const options = this.state.chapters.map((chapter, idx) => {
 
-        const options = this.state.chapters.map((chapter) => {
-            return (<option key={chapter} value={chapter[3]}>{alias + " " + chapter[0]}</option>);
+            return (<option 
+                key={chapter} 
+                value={chapter[3]} 
+                selected={ chapter[3] === currentChapter ? "selected" : ""} 
+                disabled={ chapter[3] === currentChapter ? "disabled" : ""}>
+                    {alias + " " + (chapter[0] + 1)} 
+                </option>);
         });
     
-        options.push((<option key="default" value="" selected="selected" disabled="disabled"> PICK A CHAPTER</option>));
+        options.push((<option key="default" value="" selected="" disabled="disabled"> PICK A CHAPTER</option>));
 
         if(options.length === 1 ) {
             return (
@@ -58,11 +78,11 @@ class ChapterPicker extends React.Component {
         
         return fireRedirect ? (<Redirect to="/reader" />) : (
             <div className="chapter-picker">
-                <form onSubmit={this.handleChange}>
+                <form onSubmit={this.handleSubmit}>
                     <select onChange={this.handleChange}>
                             { options }
                     </select>
-                    <button>READ</button>
+                    { (currentChapter !== 0 && button ) ? <button>READ</button> : ""}
                 </form>
             </div>
         );

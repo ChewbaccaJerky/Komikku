@@ -37,7 +37,7 @@ class MangaDetail extends React.Component {
                 <div className="categories">
                     <span>Categories:</span> { categories }
                 </div>
-                <ChapterPickerContainer />
+                <ChapterPickerContainer button={true}/>
             </div>
         );
     }

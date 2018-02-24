@@ -8,7 +8,7 @@ import Reader from './reader';
 const mapStateToProps = (state, ownProps) => {
     const mangaName = state.util.current_manga;
     const manga = state.entities.mangas[mangaName];
-    const pages = state.entities.chapters;
+    const pages = state.entities.chapter;
     const currentChapter = state.util.current_chapter;
     return {
         manga: manga,

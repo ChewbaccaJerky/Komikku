@@ -6,12 +6,15 @@ import { fetchPages } from "../../action/chapter_action";
 
 const mapStateToProps = (state, ownProps) => {
     const alias = state.util.current_manga;
+    const currentChapter = state.util.current_chapter;
     const chapters = state.entities.mangas[alias]
         ? state.entities.mangas[alias].chapters : [];
     return {
         alias: alias,
         chapters: chapters,
-        selectedChapter: state.util.current_chapter
+        selectedChapter: state.util.current_chapter,
+        currentChapter: currentChapter,
+        button: ownProps.button
     };
 };
 
