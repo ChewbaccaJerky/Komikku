@@ -220,7 +220,7 @@ button {
     grid-row: 4/5;
     background-color: transparent;
     color: rgba(0, 0, 0, 0.5);
-    font-size: 3em;
+    font-size: 2em;
     border: none;
     padding: 0.5em; }
   .reader .prev {
@@ -228,17 +228,19 @@ button {
     grid-row: 5/6;
     background-color: transparent;
     color: rgba(0, 0, 0, 0.5);
-    font-size: 3em;
+    font-size: 2em;
     border: none;
     padding: 0.5em; }
   .reader .page-num {
     grid-column: 1/2;
-    grid-row: 1/2;
+    grid-row: 2/3;
     color: rgba(0, 0, 0, 0.5);
-    font-size: 3em;
+    font-size: 2em;
     padding: 0.5em;
     text-align: center; }
   .reader .chapter-picker {
+    grid-column: 1/2;
+    grid-row: 1/2;
     width: 100%;
     justify-content: center;
     align-items: center; }

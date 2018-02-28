@@ -1,5 +1,4 @@
 import React from "react";
-import FontAwesome from "react-fontawesome";
 import { Redirect } from "react-router-dom";
 import { merge } from "lodash";
 
@@ -71,7 +70,7 @@ class Reader extends React.Component {
             <button className="next" onClick={() => this.changePage("next")}>NEXT</button>
             <button className="prev" onClick={() => this.changePage("prev")}>PREV</button>
             <ChapterPickerContainer button={false}/>
-            <h1>{ currentPage + 1}</h1>
+            <h1 className="page-num">Page { currentPage + 1} / { pages.length }</h1>
         </div>) : (<Redirect to="/home" />);
     }
 }

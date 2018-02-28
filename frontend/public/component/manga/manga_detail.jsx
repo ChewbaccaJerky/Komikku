@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Image from '../basic/image';
 import ChapterPickerContainer from './chapter_picker_container';
@@ -44,5 +45,3 @@ class MangaDetail extends React.Component {
 }
 
 export default MangaDetail;
-
-//TODO: STUFF!!!
