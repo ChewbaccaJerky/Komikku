@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import MangaItem from './manga_item';
 
@@ -23,15 +24,23 @@ class MangaIndex extends React.Component {
         let mangaItems = [];
 
         if(this.state.mangas) {
+
             Object.keys(this.state.mangas).forEach((title)=>{
-                mangaItems.push((<MangaItem manga={this.state.mangas[title]} key={title} />));
+                
+                mangaItems.push((
+                        <MangaItem manga={this.state.mangas[title]} key={title} />
+                ));
             });
         }
 
         return(
-            <div className="manga-index">
+            <ReactCSSTransitionGroup
+                        className="manga-index"
+                        transitionName="manga-item"
+                        transitionEnterTimeout={500}
+                        transitoinLeaveTimeout={500}>
                 { mangaItems }
-            </div>
+            </ReactCSSTransitionGroup>
         );
     }
 }

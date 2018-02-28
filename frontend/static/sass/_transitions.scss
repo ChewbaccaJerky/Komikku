@@ -1,0 +1,29 @@
+
+.manga-item-enter {
+    opacity: 0.01;
+}
+
+.manga-item-enter.manga-item-enter-active {
+    opacity: 1;
+    transition: opacity 1s ease-in;
+}
+
+.manga-item-leave {
+    opacity: 1;
+}
+
+.manga-item-leave.manga-item-leave-active {
+    opacity: 0.01;
+    transition: opacity 1s ease-in;
+
+}
+
+
+.manga-item-appear {
+  opacity: 0.01;
+}
+
+.manga-item-appear.manga-item-appear-active {
+  opacity: 1;
+  transition: opacity 1500ms ease-in;
+}
