@@ -37,8 +37,10 @@ class MangaIndex extends React.Component {
             <ReactCSSTransitionGroup
                         className="manga-index"
                         transitionName="manga-item"
-                        transitionEnterTimeout={500}
-                        transitoinLeaveTimeout={500}>
+                        transitionEnter={false}
+                        transitionLeave={false}
+                        transitionAppear={true}
+                        transitionAppearTimeout={500}>
                 { mangaItems }
             </ReactCSSTransitionGroup>
         );
