@@ -44,3 +44,5 @@ class MangaDetail extends React.Component {
 }
 
 export default MangaDetail;
+
+//TODO: STUFF!!!

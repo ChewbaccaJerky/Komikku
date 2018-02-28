@@ -65,6 +65,7 @@ class Reader extends React.Component {
         const { manga, pages, currentPage } = this.state;
         let image = pages.length !== 0 ? (<Image imageId={pages[currentPage].image_url} />) : "";
         // manga must exist else redirect to home
+        
         return manga ? (<div className="reader">
             { image }
             <button className="next" onClick={() => this.changePage("next")}>NEXT</button>

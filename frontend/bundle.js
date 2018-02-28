@@ -38674,6 +38674,8 @@ var MangaDetail = function (_React$Component) {
 
 exports.default = MangaDetail;
 
+//TODO: STUFF!!!
+
 /***/ }),
 /* 140 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -39023,6 +39025,7 @@ var Reader = function (_React$Component) {
 
             var image = pages.length !== 0 ? _react2.default.createElement(_image2.default, { imageId: pages[currentPage].image_url }) : "";
             // manga must exist else redirect to home
+
             return manga ? _react2.default.createElement(
                 "div",
                 { className: "reader" },
