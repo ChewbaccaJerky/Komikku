@@ -6,15 +6,16 @@ class Api::MangasController < ApplicationController
 
   def index
     @mangas = $redis.get("mangas")
-    @mangas =  JSON.parse(@mangas)
 
     if @mangas.nil?
       url = "https://www.mangaeden.com/api/list/0/"
       response = RestClient.get url
       @mangas = JSON.parse(response.body)
       $redis.set("mangas", @mangas.to_json)
+    else
+      @mangas =  JSON.parse(@mangas)
     end
-
+    
     render "/api/mangas/index"
   end
   
