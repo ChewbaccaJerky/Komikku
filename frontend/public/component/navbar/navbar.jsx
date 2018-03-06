@@ -5,9 +5,9 @@ import LinkIndex from './link-index';
 
 const image_name = [
     "home",
-    "search",
-    "category",
-    "favorites"
+    // "search",
+    // "category",
+    // "favorites"
 ];
 
 class NavBar extends React.Component {

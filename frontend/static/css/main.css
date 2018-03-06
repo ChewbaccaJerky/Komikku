@@ -89,6 +89,16 @@ img[data-src] {
   display: flex;
   flex-wrap: wrap;
   margin: 0.75em; }
+  .manga-index button {
+    height: 300px;
+    width: 200px;
+    margin: 1.5em;
+    background-color: rgba(0, 0, 0, 0.1);
+    border: none;
+    font-size: 1em;
+    transition: background-color .5s; }
+    .manga-index button:hover {
+      background-color: rgba(0, 0, 0, 0.3); }
 
 .manga-item a {
   display: grid;
@@ -97,7 +107,10 @@ img[data-src] {
   height: 300px;
   width: 200px;
   margin: 1.5em;
-  text-decoration: none; }
+  text-decoration: none;
+  transition: background-color .5s; }
+  .manga-item a:hover {
+    background-color: rgba(0, 0, 0, 0.2); }
   .manga-item a h1 {
     grid-row: 2;
     font-size: 1em;

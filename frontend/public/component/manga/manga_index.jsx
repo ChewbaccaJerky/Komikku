@@ -50,7 +50,7 @@ class MangaIndex extends React.Component {
                         transitionAppear={true}
                         transitionAppearTimeout={500}>
                 { mangaItems }
-                <button onClick={this.handleClick}>NEXT</button>
+                <button onClick={this.handleClick}>More Manga</button>
             </ReactCSSTransitionGroup>
         );
     }

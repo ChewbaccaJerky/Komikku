@@ -8,4 +8,17 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0.75em;
+
+    button {
+        height: 300px;
+        width: 200px;
+        margin: 1.5em;  
+        background-color: rgba(0,0,0, 0.1);
+        border: none;
+        font-size: 1em;
+        transition: background-color .5s;
+        &:hover {
+            background-color: rgba(0,0,0, 0.3);
+        }
+    }
 }

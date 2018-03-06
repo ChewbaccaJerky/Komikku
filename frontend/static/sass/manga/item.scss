@@ -7,7 +7,10 @@
     width: 200px;
     margin: 1.5em;    
     text-decoration: none;
-
+    transition: background-color .5s;
+    &:hover {
+        background-color: rgba(0,0,0, 0.2);
+    }
     h1 {
         grid-row: 2;
         font-size: 1em;
