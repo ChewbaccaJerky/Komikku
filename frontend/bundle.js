@@ -30029,14 +30029,6 @@ var fetchAllMangas = exports.fetchAllMangas = function fetchAllMangas() {
     });
 };
 
-// export const fetchAllMangas = () => (
-//     $.ajax({
-//         method: 'GET',
-//         url: 'http://localhost:3000/api/mangas'
-//     })
-// );
-
-
 var fetchMangasByPage = exports.fetchMangasByPage = function fetchMangasByPage(pageNum) {
     return _jquery2.default.ajax({
         method: 'GET',
@@ -55761,14 +55753,13 @@ var ChapterPicker = function (_React$Component) {
             ));
 
             var chapters = this.state.chapters.map(function (chapter, idx) {
-
                 return _react2.default.createElement(
                     "option",
                     {
                         key: chapter,
                         value: chapter[3],
                         selected: chapter[3] === currentChapter ? "selected" : "" },
-                    alias + " " + (chapter[0] + 1)
+                    alias + " " + chapter[0]
                 );
             });
 

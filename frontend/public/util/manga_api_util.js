@@ -7,15 +7,7 @@ export const fetchAllMangas = () => (
     })
 );
 
-// export const fetchAllMangas = () => (
-//     $.ajax({
-//         method: 'GET',
-//         url: 'http://localhost:3000/api/mangas'
-//     })
-// );
-
-
-export const fetchMangasByPage = (pageNum) => (
+export const fetchMangasByPage = (pageNum) => ( 
     $.ajax({
         method: 'GET',
         url: 'http://komikku-api.herokuapp.com/api/page/' + pageNum

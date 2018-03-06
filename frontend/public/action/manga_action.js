@@ -22,7 +22,7 @@ const receiveErrors = errors => ({
 export const fetchAllMangas = () => dispatch => (
     MangaAPIUtil.fetchAllMangas().then(payload => (
         dispatch(receiveMangas(payload))
-        ), err => dispatch(receiveErrors(err)))
+    ), err => dispatch(receiveErrors(err)))
 );
 
 export const fetchMangasByPage = (pageNum) => dispatch => (

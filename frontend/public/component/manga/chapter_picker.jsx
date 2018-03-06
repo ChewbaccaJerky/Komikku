@@ -61,12 +61,11 @@ class ChapterPicker extends React.Component {
         options.push((<option key="default" value="DEFAULT" selected="selected" disabled="disabled"> PICK A CHAPTER</option>));
 
         const chapters = this.state.chapters.map((chapter, idx) => {
-
                 return (<option 
                     key={chapter} 
                     value={chapter[3]} 
                     selected={ chapter[3] === currentChapter ? "selected" : ""} >
-                        {alias + " " + (chapter[0] + 1)} 
+                        {alias + " " + (chapter[0])} 
                     </option>);
         });
 
