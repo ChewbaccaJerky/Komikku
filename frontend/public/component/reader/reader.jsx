@@ -1,10 +1,9 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { merge } from "lodash";
 
 import Image from "../basic/image";
 import ChapterPickerContainer from "../manga/chapter_picker_container";
-import BackButton from "../basic/back_button";
 
 class Reader extends React.Component {
     constructor({manga, pages, currentChapter, fetchPages}) {
@@ -71,7 +70,7 @@ class Reader extends React.Component {
             <button className="prev" onClick={() => this.changePage("prev")}>PREV</button>
             <ChapterPickerContainer button={false}/>
             <h1 className="page-num">Page { currentPage + 1} / { pages.length }</h1>
-            <BackButton />
+            <Link to={"/manga/" + manga.alias}>Back!!!</Link>
         </div>) : (<Redirect to="/home" />);
     }
 }

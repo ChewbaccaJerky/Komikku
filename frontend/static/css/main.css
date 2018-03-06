@@ -266,5 +266,7 @@ img[data-src] {
     align-items: center; }
     .reader .chapter-picker form select {
       width: 95%; }
+  .reader a {
+    color: red; }
 
 /*# sourceMappingURL=main.css.map */

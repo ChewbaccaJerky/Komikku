@@ -55906,10 +55906,6 @@ var _chapter_picker_container = __webpack_require__(71);
 
 var _chapter_picker_container2 = _interopRequireDefault(_chapter_picker_container);
 
-var _back_button = __webpack_require__(166);
-
-var _back_button2 = _interopRequireDefault(_back_button);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56034,7 +56030,11 @@ var Reader = function (_React$Component) {
                     " / ",
                     pages.length
                 ),
-                _react2.default.createElement(_back_button2.default, null)
+                _react2.default.createElement(
+                    _reactRouterDom.Link,
+                    { to: "/manga/" + manga.alias },
+                    "Back!!!"
+                )
             ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: "/home" });
         }
     }]);
