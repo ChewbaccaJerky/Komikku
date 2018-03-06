@@ -55553,6 +55553,10 @@ var _chapter_picker_container = __webpack_require__(71);
 
 var _chapter_picker_container2 = _interopRequireDefault(_chapter_picker_container);
 
+var _back_button = __webpack_require__(166);
+
+var _back_button2 = _interopRequireDefault(_back_button);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -55904,6 +55908,10 @@ var _chapter_picker_container = __webpack_require__(71);
 
 var _chapter_picker_container2 = _interopRequireDefault(_chapter_picker_container);
 
+var _back_button = __webpack_require__(166);
+
+var _back_button2 = _interopRequireDefault(_back_button);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56027,7 +56035,8 @@ var Reader = function (_React$Component) {
                     currentPage + 1,
                     " / ",
                     pages.length
-                )
+                ),
+                _react2.default.createElement(_back_button2.default, null)
             ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: "/home" });
         }
     }]);
@@ -56036,6 +56045,70 @@ var Reader = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Reader;
+
+/***/ }),
+/* 165 */,
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(0);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouter = __webpack_require__(59);
+
+var _reactRouter2 = _interopRequireDefault(_reactRouter);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var BackButton = function (_React$Component) {
+    _inherits(BackButton, _React$Component);
+
+    function BackButton(props) {
+        _classCallCheck(this, BackButton);
+
+        var _this = _possibleConstructorReturn(this, (BackButton.__proto__ || Object.getPrototypeOf(BackButton)).call(this, props));
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
+    }
+
+    _createClass(BackButton, [{
+        key: "handleClick",
+        value: function handleClick(e) {
+            console.dir(window.history.back());
+        }
+    }, {
+        key: "render",
+        value: function render() {
+
+            return _react2.default.createElement(
+                "button",
+                { onClick: this.handleClick },
+                "BackButton!!!!"
+            );
+        }
+    }]);
+
+    return BackButton;
+}(_react2.default.Component);
+
+exports.default = BackButton;
 
 /***/ })
 /******/ ]);

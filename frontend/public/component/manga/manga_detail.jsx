@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import Image from '../basic/image';
 import ChapterPickerContainer from './chapter_picker_container';
+import BackButton from "../basic/back_button";
 
 class MangaDetail extends React.Component {
     constructor({manga, fetchManga, setCurrentManga, alias }){
