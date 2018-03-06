@@ -32975,7 +32975,9 @@ var UtilReducer = function UtilReducer() {
     var newState = void 0;
     switch (action.type) {
         case _util_action.RECEIVE_PAGE:
-            return (0, _lodash.merge)({}, action.page);
+            newState = (0, _lodash.merge)({}, oldState);
+            newState.page = action.page;
+            return newState;
 
         case _util_action.CLEAR:
             return defaultState;
@@ -38479,6 +38481,8 @@ var _reactRedux = __webpack_require__(7);
 
 var _manga_action = __webpack_require__(16);
 
+var _util_action = __webpack_require__(18);
+
 var _manga_index = __webpack_require__(140);
 
 var _manga_index2 = _interopRequireDefault(_manga_index);
@@ -38499,6 +38503,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
         },
         fetchAllMangas: function fetchAllMangas() {
             return dispatch((0, _manga_action.fetchAllMangas)());
+        },
+        changePage: function changePage(pageNum) {
+            return dispatch((0, _util_action.changePage)(pageNum));
         }
     };
 };
@@ -38546,7 +38553,8 @@ var MangaIndex = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (MangaIndex.__proto__ || Object.getPrototypeOf(MangaIndex)).call(this, props));
 
-        _this.state = { mangas: props.mangas, page: props.page };
+        _this.state = { mangas: props.mangas, page: _this.props.page };
+        _this.handleClick = _this.handleClick.bind(_this);
         return _this;
     }
 
@@ -38561,6 +38569,14 @@ var MangaIndex = function (_React$Component) {
             if (this.state.mangas !== nextProps.mangas) {
                 this.setState({ mangas: nextProps.mangas });
             }
+
+            if (this.state.page !== nextProps.page) this.setState({ page: nextProps.page });
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick() {
+            this.props.changePage(this.state.page + 1);
+            this.props.fetchMangasByPage(this.state.page + 1);
         }
     }, {
         key: 'render',
@@ -38586,7 +38602,12 @@ var MangaIndex = function (_React$Component) {
                     transitionLeave: false,
                     transitionAppear: true,
                     transitionAppearTimeout: 500 },
-                mangaItems
+                mangaItems,
+                _react2.default.createElement(
+                    'button',
+                    { onClick: this.handleClick },
+                    'NEXT'
+                )
             );
         }
     }]);
@@ -55691,7 +55712,6 @@ var ChapterPicker = function (_React$Component) {
             currentChapter: currentChapter,
             button: button
         };
-        console.log(button);
         _this.handleSubmit = _this.handleSubmit.bind(_this);
         _this.handleChange = _this.handleChange.bind(_this);
         return _this;

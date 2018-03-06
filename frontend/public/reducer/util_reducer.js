@@ -15,7 +15,9 @@ const UtilReducer = (oldState = defaultState, action) => {
     let newState;
     switch(action.type) {
         case RECEIVE_PAGE:
-            return merge({}, action.page);
+            newState =  merge({}, oldState);
+            newState.page = action.page;
+            return newState;
 
         case CLEAR:
             return defaultState;

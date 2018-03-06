@@ -6,7 +6,8 @@ import MangaItem from './manga_item';
 class MangaIndex extends React.Component {
     constructor(props){
         super(props);
-        this.state = {mangas: props.mangas, page: props.page };
+        this.state = {mangas: props.mangas, page: this.props.page };
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentWillMount(){
@@ -17,6 +18,13 @@ class MangaIndex extends React.Component {
         if(this.state.mangas !== nextProps.mangas) {
             this.setState({mangas: nextProps.mangas });
         }
+
+        if(this.state.page !== nextProps.page) this.setState({page: nextProps.page});
+    }
+
+    handleClick(){
+        this.props.changePage(this.state.page + 1);
+        this.props.fetchMangasByPage(this.state.page + 1);
     }
 
     render(){
@@ -42,6 +50,7 @@ class MangaIndex extends React.Component {
                         transitionAppear={true}
                         transitionAppearTimeout={500}>
                 { mangaItems }
+                <button onClick={this.handleClick}>NEXT</button>
             </ReactCSSTransitionGroup>
         );
     }

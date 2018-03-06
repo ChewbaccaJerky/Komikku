@@ -15,7 +15,6 @@ class ChapterPicker extends React.Component {
             currentChapter,
             button: button
         };
-        console.log(button);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
