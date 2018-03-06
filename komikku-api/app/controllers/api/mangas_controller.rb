@@ -5,24 +5,30 @@ class Api::MangasController < ApplicationController
   # before_action :require_logged_in
 
   def index
-    @mangas = $redis.get("mangas")
+    # When Redis is added
+    # @mangas = $redis.get("mangas")
 
-    if @mangas.nil?
-      url = "https://www.mangaeden.com/api/list/0/"
+    # if @mangas.nil?
+    #   url = "https://www.mangaeden.com/api/list/0/"
+    #   response = RestClient.get url
+    #   @mangas = JSON.parse(response.body)
+    #   $redis.set("mangas", @mangas.to_json)
+    # else
+    #   @mangas =  JSON.parse(@mangas)
+    # end
+
+
+    url = "https://www.mangaeden.com/api/list/0/"
       response = RestClient.get url
       @mangas = JSON.parse(response.body)
-      $redis.set("mangas", @mangas.to_json)
-    else
-      @mangas =  JSON.parse(@mangas)
-    end
-    
+
     render "/api/mangas/index"
   end
   
   def page
     url = "https://www.mangaeden.com/api/list/0/"
 
-    response = RestClient.get url, {params: {p: params[:id], l: 25}}
+    response = RestClient.get url, {params: {p: params[:id], l: 750}}
     @mangas = JSON.parse(response.body)
     render "/api/mangas/page"
   end
