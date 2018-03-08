@@ -42,6 +42,7 @@
         grid-column: 2/3;
         grid-row: 2/3;
         @extend %shadow-box;
+        font-weight: normal;
     }
 
     .description {
@@ -51,9 +52,7 @@
 
         display: flex;
         flex-direction: column;
-        span {
-            font-size: 1.5em;
-        }
+        overflow-y: scroll;
     }
 
     .categories {
@@ -63,16 +62,14 @@
 
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
-        align-items: flex-start;
         flex-wrap: wrap;
-
-        .span {
-            font-size: 1.5em;
+        overflow-y: scroll;
+        span {
+            margin: 1em 0;
         }
 
         .category {
-            margin: 0 0.5em;
+            margin: 0.25em;
             padding: 0.5em;
             border-radius: 0.5em;
             background: $background-color;
@@ -85,5 +82,10 @@
 
         @extend %shadow-box;
         margin-bottom: 1em;
+        padding: 1em;
+    }
+
+    * span {
+        font-weight: 800;    
     }
 }

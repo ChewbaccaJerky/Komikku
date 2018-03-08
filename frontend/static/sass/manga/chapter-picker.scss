@@ -28,7 +28,7 @@
 
         button {
             @extend %picker-box;
-            transition: all 1s;
+            transition: all 0.7s;
             &:hover {
                 background: rgba(255, 255, 255, 0.1);
                 // color: #000;

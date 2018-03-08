@@ -155,33 +155,35 @@ img[data-src] {
     font-weight: bolder; }
   .manga-detail .artist {
     grid-column: 2/3;
-    grid-row: 2/3; }
+    grid-row: 2/3;
+    font-weight: normal; }
   .manga-detail .description {
     grid-column: 2/3;
     grid-row: 4/8;
     display: flex;
-    flex-direction: column; }
-    .manga-detail .description span {
-      font-size: 1.5em; }
+    flex-direction: column;
+    overflow-y: scroll; }
   .manga-detail .categories {
     grid-column: 2/3;
     grid-row: 3/4;
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap; }
-    .manga-detail .categories .span {
-      font-size: 1.5em; }
+    flex-wrap: wrap;
+    overflow-y: scroll; }
+    .manga-detail .categories span {
+      margin: 1em 0; }
     .manga-detail .categories .category {
-      margin: 0 0.5em;
+      margin: 0.25em;
       padding: 0.5em;
       border-radius: 0.5em;
       background: rgba(0, 0, 0, 0.1); }
   .manga-detail .chapter-picker {
     grid-column: 2/3;
     grid-row: 8/9;
-    margin-bottom: 1em; }
+    margin-bottom: 1em;
+    padding: 1em; }
+  .manga-detail * span {
+    font-weight: 800; }
 
 .manga-detail .title, .manga-detail .artist, .manga-detail .description, .manga-detail .categories, .manga-detail .chapter-picker {
   color: #000;
@@ -205,7 +207,7 @@ img[data-src] {
   .chapter-picker form select {
     padding: 1em; }
   .chapter-picker form button {
-    transition: all 1s; }
+    transition: all 0.7s; }
     .chapter-picker form button:hover {
       background: rgba(255, 255, 255, 0.1);
       padding: 0; }

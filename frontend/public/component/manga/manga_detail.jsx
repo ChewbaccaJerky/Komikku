@@ -37,7 +37,8 @@ class MangaDetail extends React.Component {
                 <h4 className="artist" ><span>By:</span> {manga.artist}</h4>
                 <p className="description" ><span>Description:</span> {manga.description}</p>
                 <div className="categories">
-                    <span>Categories:</span> { categories }
+                    <span> Categories: </span> 
+                    { categories }
                 </div>
                 <ChapterPickerContainer button={true}/>
             </div>

@@ -55654,9 +55654,8 @@ var MangaDetail = function (_React$Component) {
                     _react2.default.createElement(
                         'span',
                         null,
-                        'Categories:'
+                        ' Categories: '
                     ),
-                    ' ',
                     categories
                 ),
                 _react2.default.createElement(_chapter_picker_container2.default, { button: true })
