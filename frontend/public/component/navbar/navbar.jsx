@@ -5,9 +5,8 @@ import LinkIndex from './link-index';
 
 const image_name = [
     "dashboard",
-    // "search",
-    // "category",
-    // "favorites"
+    "search",
+    "favorites"
 ];
 
 class NavBar extends React.Component {
