@@ -4,11 +4,12 @@ Komikku is a desktop application built with Electron, React, Redux, Redis, Ruby 
 
 ## Features
 ### DashBoard
-![Dashboard](http://gph.is/2Ie8Y8c)
+![Dashboard](https://media.giphy.com/media/KWPOotE30NzLG2aLcL/giphy.gif)
 
 Using Komikku API and implementing Manga Eden API, the application is seeded with updated and hundreds of mangas.
+
 ### Reader
-<!-- ![Reader](https://media.giphy.com/media/SL7L6axHEatM8psqAv/giphy.gif) -->
+
 
 Allows users to navigate through the choosen manga's pages and chapters.
 
