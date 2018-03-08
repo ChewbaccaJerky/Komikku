@@ -28,7 +28,7 @@ class Api::MangasController < ApplicationController
   def page
     url = "https://www.mangaeden.com/api/list/0/"
 
-    response = RestClient.get url, {params: {p: params[:id], l: 500}}
+    response = RestClient.get url, {params: {p: params[:id], l: 250}}
     @mangas = JSON.parse(response.body)
     render "/api/mangas/page"
   end
