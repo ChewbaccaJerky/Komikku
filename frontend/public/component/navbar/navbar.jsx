@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import LinkIndex from './link-index';
 
 const image_name = [
-    "home",
-    "search",
-    "category",
-    "favorites"
+    "dashboard",
+    // "search",
+    // "category",
+    // "favorites"
 ];
 
 class NavBar extends React.Component {

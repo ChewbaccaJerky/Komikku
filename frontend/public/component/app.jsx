@@ -16,7 +16,7 @@ const App = () => (
         <Route path="/" component={NavBar} />
         <Switch>
             <AuthRoute exact path="/login" component={ SessionFormContainer } />
-            <Route exact path="/home" component={ MangaIndexContainer }/>
+            <Route exact path="/" component={ MangaIndexContainer }/>
             <Route exact path="/manga/:alias" component={ MangaDetailContainer } />
             <Route exact path="/reader" component={ ReaderContainer } />
         </Switch>

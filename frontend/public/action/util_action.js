@@ -20,6 +20,10 @@ const receivePage = (page) => ({
     page: page
 });
 
+export const clearUtil = () => dispatch => {
+    dispatch({ type: CLEAR});
+};
+
 export const changePage = (page) => dispatch => {
     dispatch(receivePage(page));
 };

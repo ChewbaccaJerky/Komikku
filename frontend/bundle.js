@@ -17680,6 +17680,12 @@ var receivePage = function receivePage(page) {
     };
 };
 
+var clearUtil = exports.clearUtil = function clearUtil() {
+    return function (dispatch) {
+        dispatch({ type: CLEAR });
+    };
+};
+
 var changePage = exports.changePage = function changePage(page) {
     return function (dispatch) {
         dispatch(receivePage(page));
@@ -38096,7 +38102,7 @@ var App = function App() {
             _reactRouter.Switch,
             null,
             _react2.default.createElement(_route_util.AuthRoute, { exact: true, path: '/login', component: _session_form_container2.default }),
-            _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/home', component: _manga_index_container2.default }),
+            _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/', component: _manga_index_container2.default }),
             _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/manga/:alias', component: _manga_detail_container2.default }),
             _react2.default.createElement(_reactRouter.Route, { exact: true, path: '/reader', component: _reader_container2.default })
         )
@@ -38241,7 +38247,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var image_name = ["home", "search", "category", "favorites"];
+var image_name = ["dashboard"];
 
 var NavBar = function (_React$Component) {
     _inherits(NavBar, _React$Component);
@@ -38336,7 +38342,7 @@ var LinkItem = function LinkItem(_ref) {
         { className: 'link-item' },
         _react2.default.createElement(
             _reactRouterDom.Link,
-            { to: "/" + image_name },
+            { to: "/" },
             _react2.default.createElement(_icon2.default, { image_name: image_name }),
             _react2.default.createElement(
                 'h1',
@@ -38506,6 +38512,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
         },
         changePage: function changePage(pageNum) {
             return dispatch((0, _util_action.changePage)(pageNum));
+        },
+        clearUtil: function clearUtil() {
+            return dispatch((0, _util_action.clearUtil)());
         }
     };
 };
@@ -38562,6 +38571,7 @@ var MangaIndex = function (_React$Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.fetchMangasByPage(this.props.page);
+            this.props.clearUtil();
         }
     }, {
         key: 'componentWillReceiveProps',
@@ -38598,8 +38608,8 @@ var MangaIndex = function (_React$Component) {
                 {
                     className: 'manga-index',
                     transitionName: 'manga-item',
-                    transitionEnterTimeout: 500,
-                    transitionLeaveTimeout: 300 },
+                    transitionEnterTimeout: 1000,
+                    transitionLeaveTimeout: 500 },
                 mangaItems,
                 _react2.default.createElement(
                     'button',

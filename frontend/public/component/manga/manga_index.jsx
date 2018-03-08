@@ -12,6 +12,7 @@ class MangaIndex extends React.Component {
 
     componentWillMount(){
         this.props.fetchMangasByPage(this.props.page);
+        this.props.clearUtil();
     }
 
     componentWillReceiveProps(nextProps) {
@@ -45,8 +46,8 @@ class MangaIndex extends React.Component {
             <ReactCSSTransitionGroup
                         className="manga-index"
                         transitionName="manga-item"
-                        transitionEnterTimeout={500}
-                        transitionLeaveTimeout={300}>
+                        transitionEnterTimeout={1000}
+                        transitionLeaveTimeout={500}>
                 { mangaItems }
                 <button onClick={this.handleClick}>More Manga</button>
             </ReactCSSTransitionGroup>
