@@ -11,6 +11,7 @@ class Reader extends React.Component {
         this.state = {manga, pages: [], currentChapter, fetchPages, currentPage: 0};
 
         this.changePage = this.changePage.bind(this);
+        // this.handleKeyPress = this.handleKeyPress.bind(this);
     }
 
     componentDidMount() {
@@ -62,8 +63,7 @@ class Reader extends React.Component {
     render(){
         const { manga, pages, currentPage } = this.state;
         let image = pages.length !== 0 ? (<Image imageId={pages[currentPage].image_url} />) : "";
-        // manga must exist else redirect to home
-        
+        window.addEventListener('keypress', (evt)=>{ console.log(evt);});
         return manga ? (<div className="reader">
             { image }
             <div className="nav-buttons">

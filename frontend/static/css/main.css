@@ -176,6 +176,7 @@ img[data-src] {
       margin: 0.25em;
       padding: 0.5em;
       border-radius: 0.5em;
+      height: 1em;
       background: rgba(0, 0, 0, 0.1); }
   .manga-detail .chapter-picker {
     grid-column: 2/3;

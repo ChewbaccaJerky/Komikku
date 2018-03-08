@@ -38608,7 +38608,7 @@ var MangaIndex = function (_React$Component) {
                 {
                     className: 'manga-index',
                     transitionName: 'manga-item',
-                    transitionEnterTimeout: 1000,
+                    transitionEnterTimeout: 700,
                     transitionLeaveTimeout: 500 },
                 mangaItems,
                 _react2.default.createElement(
@@ -56002,6 +56002,7 @@ var Reader = function (_React$Component) {
         _this.state = { manga: manga, pages: [], currentChapter: currentChapter, fetchPages: fetchPages, currentPage: 0 };
 
         _this.changePage = _this.changePage.bind(_this);
+        // this.handleKeyPress = this.handleKeyPress.bind(this);
         return _this;
     }
 
@@ -56073,8 +56074,9 @@ var Reader = function (_React$Component) {
                 currentPage = _state3.currentPage;
 
             var image = pages.length !== 0 ? _react2.default.createElement(_image2.default, { imageId: pages[currentPage].image_url }) : "";
-            // manga must exist else redirect to home
-
+            window.addEventListener('keypress', function (evt) {
+                console.log(evt);
+            });
             return manga ? _react2.default.createElement(
                 "div",
                 { className: "reader" },
