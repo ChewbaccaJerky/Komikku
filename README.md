@@ -1,4 +1,5 @@
 # Komikku
+![Dashboard](http://www.giphy.com/gifs/KWPOotE30NzLG2aLcL)
 Komikku is a single page desktop application built with Electron, React, Redux, Ruby On Rails, and Manga Eden API. The application is content rich which allows users to read hundreds of Japanese Manga.
 
 ## Features
