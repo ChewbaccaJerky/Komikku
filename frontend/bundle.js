@@ -56071,24 +56071,27 @@ var Reader = function (_React$Component) {
                 { className: "reader" },
                 image,
                 _react2.default.createElement(
-                    "button",
-                    { className: "next", onClick: function onClick() {
-                            return _this2.changePage("next");
-                        } },
-                    "NEXT"
-                ),
-                _react2.default.createElement(
-                    "button",
-                    { className: "prev", onClick: function onClick() {
-                            return _this2.changePage("prev");
-                        } },
-                    "PREV"
+                    "div",
+                    { className: "nav-buttons" },
+                    _react2.default.createElement(
+                        "button",
+                        { className: "next", onClick: function onClick() {
+                                return _this2.changePage("next");
+                            } },
+                        "Next"
+                    ),
+                    _react2.default.createElement(
+                        "button",
+                        { className: "prev", onClick: function onClick() {
+                                return _this2.changePage("prev");
+                            } },
+                        "Back"
+                    )
                 ),
                 _react2.default.createElement(_chapter_picker_container2.default, { button: false }),
                 _react2.default.createElement(
                     "h1",
                     { className: "page-num" },
-                    "Page ",
                     currentPage + 1,
                     " / ",
                     pages.length
@@ -56096,7 +56099,7 @@ var Reader = function (_React$Component) {
                 _react2.default.createElement(
                     _reactRouterDom.Link,
                     { to: "/manga/" + manga.alias },
-                    "Back!!!"
+                    "Return to description"
                 )
             ) : _react2.default.createElement(_reactRouterDom.Redirect, { to: "/home" });
         }

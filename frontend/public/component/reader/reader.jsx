@@ -66,11 +66,13 @@ class Reader extends React.Component {
         
         return manga ? (<div className="reader">
             { image }
-            <button className="next" onClick={() => this.changePage("next")}>NEXT</button>
-            <button className="prev" onClick={() => this.changePage("prev")}>PREV</button>
+            <div className="nav-buttons">
+                <button className="next" onClick={() => this.changePage("next")}>Next</button>
+                <button className="prev" onClick={() => this.changePage("prev")}>Back</button>
+            </div>
             <ChapterPickerContainer button={false}/>
-            <h1 className="page-num">Page { currentPage + 1} / { pages.length }</h1>
-            <Link to={"/manga/" + manga.alias}>Back!!!</Link>
+            <h1 className="page-num">{ currentPage + 1} / { pages.length }</h1>
+            <Link to={"/manga/" + manga.alias}>Return to description</Link>
         </div>) : (<Redirect to="/home" />);
     }
 }
