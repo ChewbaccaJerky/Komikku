@@ -27,24 +27,24 @@ img[data-src] {
   opacity: 0; }
 
 /* TRANSITIONS */
-.manga-item-enter {
+.fade-enter {
   opacity: 0.01; }
 
-.manga-item-enter.manga-item-enter-active {
+.fade-enter.fade-enter-active {
   opacity: 1;
-  transition: opacity 1s ease-in; }
+  transition: all 1s ease-in; }
 
-.manga-item-leave {
+.fade-leave {
   opacity: 1; }
 
-.manga-item-leave.manga-item-leave-active {
+.fade-leave.fade-leave-active {
   opacity: 0.01;
   transition: opacity 1s ease-in; }
 
-.manga-item-appear {
+.fade-appear {
   opacity: 0.01; }
 
-.manga-item-appear.manga-item-appear-active {
+.fade-appear.fade-appear-active {
   opacity: 1;
   transition: opacity 1500ms ease-in; }
 

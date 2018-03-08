@@ -38607,7 +38607,7 @@ var MangaIndex = function (_React$Component) {
                 _reactAddonsCssTransitionGroup2.default,
                 {
                     className: 'manga-index',
-                    transitionName: 'manga-item',
+                    transitionName: 'fade',
                     transitionEnterTimeout: 700,
                     transitionLeaveTimeout: 500 },
                 mangaItems,
@@ -56074,9 +56074,6 @@ var Reader = function (_React$Component) {
                 currentPage = _state3.currentPage;
 
             var image = pages.length !== 0 ? _react2.default.createElement(_image2.default, { imageId: pages[currentPage].image_url }) : "";
-            window.addEventListener('keypress', function (evt) {
-                console.log(evt);
-            });
             return manga ? _react2.default.createElement(
                 "div",
                 { className: "reader" },

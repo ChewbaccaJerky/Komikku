@@ -63,7 +63,6 @@ class Reader extends React.Component {
     render(){
         const { manga, pages, currentPage } = this.state;
         let image = pages.length !== 0 ? (<Image imageId={pages[currentPage].image_url} />) : "";
-        window.addEventListener('keypress', (evt)=>{ console.log(evt);});
         return manga ? (<div className="reader">
             { image }
             <div className="nav-buttons">
