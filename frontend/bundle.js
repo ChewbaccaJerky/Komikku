@@ -57380,29 +57380,6 @@ var _icon2 = _interopRequireDefault(_icon);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// class SearchBar extends React.Component {
-//     constructor({handleSearchChange, handleCloseModal}){
-//         super();
-
-//         this.state = {
-//             handleSearchChange: handleSearchChange, 
-//             handleCloseModal: handleCloseModal
-//         };
-//     }
-
-//     render(){
-
-//         return(
-//             <div className="search-bar">
-//                 <form onSubmit={this.state.handleCloseModal}>
-//                     <input onChange={this.state.handleSearchChange} type="text" placeholder="search"/>
-//                     <button type="submit">Search!</button>
-//                 </form>
-//             </div>
-//         );
-//     }
-// }
-
 var SearchBar = function SearchBar(_ref) {
     var handleSearchChange = _ref.handleSearchChange,
         handleCloseModal = _ref.handleCloseModal;
