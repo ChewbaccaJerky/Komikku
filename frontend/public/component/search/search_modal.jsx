@@ -3,14 +3,23 @@ import Modal from "react-modal";
 
 import SearchBar from "./search_bar";
 
-const SearchModal = ({showModal, handleCloseModal, handleSearchChange}) => {
+const SearchModal = ({showModal, handleCloseModal, handleSearchChange, searchParams}) => {
 
     return(
         <Modal
             isOpen={showModal}
-            onRequestClose={handleCloseModal}>
-            <button onClick={handleCloseModal}>X</button>
-            <SearchBar handleSearchChange={handleSearchChange} handleCloseModal={handleCloseModal}/>
+            onRequestClose={handleCloseModal}
+            style={{
+                content: {
+                    backgroundColor: "rgba(0,0,0,0.1)",
+                    border: "none",
+                    borderRadius: "2em"
+                }
+            }}>
+            <SearchBar 
+                handleSearchChange={handleSearchChange} 
+                handleCloseModal={handleCloseModal}
+                searchParams={searchParams}/>
         </Modal>
     );
 };

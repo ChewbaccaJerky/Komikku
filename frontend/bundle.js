@@ -38614,8 +38614,8 @@ var MangaIndex = function (_React$Component) {
     }, {
         key: 'handleSearchChange',
         value: function handleSearchChange(e) {
-            // this.setState({search: })
-            console.dir(e.target.value);
+            this.setState({ search: e.target.value.toLowerCase() });
+            console.log(this.state.search);
         }
     }, {
         key: 'render',
@@ -38623,12 +38623,14 @@ var MangaIndex = function (_React$Component) {
             var _this2 = this;
 
             var mangaItems = [];
+            var search = this.state.search;
+            var regex = new RegExp(search.replace(' ', '-'));
 
             if (this.state.mangas) {
-
                 Object.keys(this.state.mangas).forEach(function (title) {
-
-                    mangaItems.push(_react2.default.createElement(_manga_item2.default, { manga: _this2.state.mangas[title], key: title }));
+                    if (search === "" || regex.test(title)) {
+                        mangaItems.push(_react2.default.createElement(_manga_item2.default, { manga: _this2.state.mangas[title], key: title }));
+                    }
                 });
             }
 
@@ -38650,7 +38652,11 @@ var MangaIndex = function (_React$Component) {
                     { onClick: this.handleClick },
                     'More Manga'
                 ),
-                _react2.default.createElement(_search_modal2.default, { showModal: this.state.showModal, handleCloseModal: this.handleCloseModal, handleSearchChange: this.handleSearchChange })
+                _react2.default.createElement(_search_modal2.default, {
+                    showModal: this.state.showModal,
+                    handleCloseModal: this.handleCloseModal,
+                    handleSearchChange: this.handleSearchChange,
+                    searchParams: this.state.search })
             );
         }
     }]);
@@ -57382,23 +57388,20 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var SearchBar = function SearchBar(_ref) {
     var handleSearchChange = _ref.handleSearchChange,
-        handleCloseModal = _ref.handleCloseModal;
+        handleCloseModal = _ref.handleCloseModal,
+        searchParams = _ref.searchParams;
     return _react2.default.createElement(
         "div",
         { className: "search-bar" },
         _react2.default.createElement(
             "form",
             { onSubmit: handleCloseModal },
-            _react2.default.createElement("input", { onChange: handleSearchChange, type: "text", placeholder: "search" }),
-            _react2.default.createElement(
-                "button",
-                { type: "submit" },
-                "Search!"
-            )
+            _react2.default.createElement("input", { onChange: handleSearchChange, type: "text", placeholder: "search", value: searchParams })
         )
     );
 };
 
+// < button type = "submit" > <Icon image_name="search"/> < /button>
 exports.default = SearchBar;
 
 /***/ }),
@@ -57429,20 +57432,26 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var SearchModal = function SearchModal(_ref) {
     var showModal = _ref.showModal,
         handleCloseModal = _ref.handleCloseModal,
-        handleSearchChange = _ref.handleSearchChange;
+        handleSearchChange = _ref.handleSearchChange,
+        searchParams = _ref.searchParams;
 
 
     return _react2.default.createElement(
         _reactModal2.default,
         {
             isOpen: showModal,
-            onRequestClose: handleCloseModal },
-        _react2.default.createElement(
-            "button",
-            { onClick: handleCloseModal },
-            "X"
-        ),
-        _react2.default.createElement(_search_bar2.default, { handleSearchChange: handleSearchChange, handleCloseModal: handleCloseModal })
+            onRequestClose: handleCloseModal,
+            style: {
+                content: {
+                    backgroundColor: "rgba(0,0,0,0.1)",
+                    border: "none",
+                    borderRadius: "2em"
+                }
+            } },
+        _react2.default.createElement(_search_bar2.default, {
+            handleSearchChange: handleSearchChange,
+            handleCloseModal: handleCloseModal,
+            searchParams: searchParams })
     );
 };
 

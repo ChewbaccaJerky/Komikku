@@ -44,21 +44,23 @@ class MangaIndex extends React.Component {
     }
 
     handleSearchChange(e){
-        // this.setState({search: })
-        console.dir(e.target.value);
+        this.setState({search: e.target.value.toLowerCase()});
+        console.log(this.state.search);
     }
 
     render(){
 
         let mangaItems = [];
+        const search = this.state.search;
+        let regex = new RegExp(search.replace(' ', '-'));
 
         if(this.state.mangas) {
-
             Object.keys(this.state.mangas).forEach((title)=>{
-                
-                mangaItems.push((
-                        <MangaItem manga={this.state.mangas[title]} key={title} />
-                ));
+                if(search === "" || regex.test(title)) {
+                    mangaItems.push((
+                            <MangaItem manga={this.state.mangas[title]} key={title} />
+                    ));
+                }
             });
         }
 
@@ -72,7 +74,11 @@ class MangaIndex extends React.Component {
                 { mangaItems }
                 <button onClick={this.handleClick}>More Manga</button>
 
-                <SearchModal showModal={this.state.showModal} handleCloseModal={this.handleCloseModal} handleSearchChange={this.handleSearchChange}/>
+                <SearchModal 
+                    showModal={this.state.showModal} 
+                    handleCloseModal={this.handleCloseModal} 
+                    handleSearchChange={this.handleSearchChange} 
+                    searchParams={this.state.search}/>
             </ReactCSSTransitionGroup>
         );
     }
