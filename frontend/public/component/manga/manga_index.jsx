@@ -38,12 +38,14 @@ class MangaIndex extends React.Component {
         this.setState({showModal: true});
     }
 
-    handleCloseModal(){
+    handleCloseModal(e){
+        e.preventDefault();
         this.setState({showModal: false});
     }
 
     handleSearchChange(e){
         // this.setState({search: })
+        console.dir(e.target.value);
     }
 
     render(){
@@ -70,7 +72,7 @@ class MangaIndex extends React.Component {
                 { mangaItems }
                 <button onClick={this.handleClick}>More Manga</button>
 
-                <SearchModal showModal={this.state.showModal} handleCloseModal={this.handleCloseModal}/>
+                <SearchModal showModal={this.state.showModal} handleCloseModal={this.handleCloseModal} handleSearchChange={this.handleSearchChange}/>
             </ReactCSSTransitionGroup>
         );
     }

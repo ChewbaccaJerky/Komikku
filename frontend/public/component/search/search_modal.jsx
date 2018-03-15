@@ -3,13 +3,13 @@ import Modal from "react-modal";
 
 import SearchBar from "./search_bar";
 
-const SearchModal = ({showModal, handleCloseModal}) => {
+const SearchModal = ({showModal, handleCloseModal, handleSearchChange}) => {
 
     return(
         <Modal
             isOpen={showModal}>
-            <button onClick={handleCloseModal}>x</button>
-            <SearchBar />
+            <button onClick={handleCloseModal}>X</button>
+            <SearchBar handleSearchChange={handleSearchChange} handleCloseModal={handleCloseModal}/>
         </Modal>
     );
 };

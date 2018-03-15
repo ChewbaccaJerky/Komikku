@@ -38607,13 +38607,15 @@ var MangaIndex = function (_React$Component) {
         }
     }, {
         key: 'handleCloseModal',
-        value: function handleCloseModal() {
+        value: function handleCloseModal(e) {
+            e.preventDefault();
             this.setState({ showModal: false });
         }
     }, {
         key: 'handleSearchChange',
         value: function handleSearchChange(e) {
             // this.setState({search: })
+            console.dir(e.target.value);
         }
     }, {
         key: 'render',
@@ -38648,7 +38650,7 @@ var MangaIndex = function (_React$Component) {
                     { onClick: this.handleClick },
                     'More Manga'
                 ),
-                _react2.default.createElement(_search_modal2.default, { showModal: this.state.showModal, handleCloseModal: this.handleCloseModal })
+                _react2.default.createElement(_search_modal2.default, { showModal: this.state.showModal, handleCloseModal: this.handleCloseModal, handleSearchChange: this.handleSearchChange })
             );
         }
     }]);
@@ -57389,10 +57391,19 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SearchBar = function (_React$Component) {
     _inherits(SearchBar, _React$Component);
 
-    function SearchBar() {
+    function SearchBar(_ref) {
+        var handleSearchChange = _ref.handleSearchChange,
+            handleCloseModal = _ref.handleCloseModal;
+
         _classCallCheck(this, SearchBar);
 
-        return _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this));
+        var _this = _possibleConstructorReturn(this, (SearchBar.__proto__ || Object.getPrototypeOf(SearchBar)).call(this));
+
+        _this.state = {
+            handleSearchChange: handleSearchChange,
+            handleCloseModal: handleCloseModal
+        };
+        return _this;
     }
 
     _createClass(SearchBar, [{
@@ -57404,8 +57415,13 @@ var SearchBar = function (_React$Component) {
                 { className: "search-bar" },
                 _react2.default.createElement(
                     "form",
-                    null,
-                    _react2.default.createElement("input", { type: "text", placeholder: "search" })
+                    { onSubmit: this.state.handleCloseModal },
+                    _react2.default.createElement("input", { onChange: this.state.handleSearchChange, type: "text", placeholder: "search" }),
+                    _react2.default.createElement(
+                        "button",
+                        { type: "submit" },
+                        "Search!"
+                    )
                 )
             );
         }
@@ -57443,7 +57459,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var SearchModal = function SearchModal(_ref) {
     var showModal = _ref.showModal,
-        handleCloseModal = _ref.handleCloseModal;
+        handleCloseModal = _ref.handleCloseModal,
+        handleSearchChange = _ref.handleSearchChange;
 
 
     return _react2.default.createElement(
@@ -57453,9 +57470,9 @@ var SearchModal = function SearchModal(_ref) {
         _react2.default.createElement(
             "button",
             { onClick: handleCloseModal },
-            "x"
+            "X"
         ),
-        _react2.default.createElement(_search_bar2.default, null)
+        _react2.default.createElement(_search_bar2.default, { handleSearchChange: handleSearchChange, handleCloseModal: handleCloseModal })
     );
 };
 
