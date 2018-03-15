@@ -41,4 +41,4 @@ Filters manga list by search parameters.
 - OAuth
 - Favorites
 - SVG Animations
-- Publicize and prepare Komikku API
+- Publicize Komikku API
