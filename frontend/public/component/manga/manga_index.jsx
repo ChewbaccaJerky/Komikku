@@ -55,8 +55,8 @@ class MangaIndex extends React.Component {
 
         if(this.state.mangas) {
             Object.keys(this.state.mangas).forEach((title)=>{
-                // if(search === "" || title.includes(search)) {
-                if(search === "" || regex.test(title)) {
+                if(search === "" || title.includes(search)) {
+                // if(search === "" || regex.test(title)) {
                     mangaItems.push((
                             <MangaItem manga={this.state.mangas[title]} key={title} />
                     ));

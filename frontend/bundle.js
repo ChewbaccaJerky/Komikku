@@ -38627,8 +38627,8 @@ var MangaIndex = function (_React$Component) {
 
             if (this.state.mangas) {
                 Object.keys(this.state.mangas).forEach(function (title) {
-                    // if(search === "" || title.includes(search)) {
-                    if (search === "" || regex.test(title)) {
+                    if (search === "" || title.includes(search)) {
+                        // if(search === "" || regex.test(title)) {
                         mangaItems.push(_react2.default.createElement(_manga_item2.default, { manga: _this2.state.mangas[title], key: title }));
                     }
                 });
