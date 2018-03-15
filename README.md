@@ -20,7 +20,7 @@ Allows users to navigate through the choosen manga's pages and chapters.
 ### Search
 ![](./screenshot/search.gif)
 
-Filters manga list by search parameters.
+Filters manga list by Real-Time search.
 
 ## Frontend
 - Electron
