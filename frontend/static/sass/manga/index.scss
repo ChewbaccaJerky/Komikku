@@ -9,13 +9,17 @@
     flex-wrap: wrap;
     margin: 0.75em;
 
+    .icon {
+        height: 1.5em;
+    }
+
     button {
         height: 300px;
         width: 200px;
-        margin: 1.5em;  
+        margin: 1em;  
         background-color: rgba(0,0,0, 0.1);
         border: none;
-        font-size: 1em;
+        font-size: 1.5em;
         transition: background-color .5s;
         &:hover {
             background-color: rgba(0,0,0, 0.3);

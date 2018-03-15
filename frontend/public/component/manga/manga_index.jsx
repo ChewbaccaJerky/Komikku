@@ -2,12 +2,18 @@ import React from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import MangaItem from './manga_item';
+import Icon from '../navbar/icon';
+import SearchModal from "../search/search_modal";
 
 class MangaIndex extends React.Component {
     constructor(props){
         super(props);
-        this.state = {mangas: props.mangas, page: this.props.page };
+        this.state = {mangas: props.mangas, page: this.props.page, showModal: false, search:"" };
+
         this.handleClick = this.handleClick.bind(this);
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
     componentWillMount(){
@@ -26,6 +32,18 @@ class MangaIndex extends React.Component {
     handleClick(){
         this.props.changePage(this.state.page + 1);
         this.props.fetchMangasByPage(this.state.page + 1);
+    }
+
+    handleOpenModal(){
+        this.setState({showModal: true});
+    }
+
+    handleCloseModal(){
+        this.setState({showModal: false});
+    }
+
+    handleSearchChange(e){
+        // this.setState({search: })
     }
 
     render(){
@@ -48,11 +66,16 @@ class MangaIndex extends React.Component {
                         transitionName="fade"
                         transitionEnterTimeout={700}
                         transitionLeaveTimeout={500}>
+                <button onClick={this.handleOpenModal}><Icon image_name="search" /></button>
                 { mangaItems }
                 <button onClick={this.handleClick}>More Manga</button>
+
+                <SearchModal showModal={this.state.showModal} handleCloseModal={this.handleCloseModal}/>
             </ReactCSSTransitionGroup>
         );
     }
 }
+
+
 
 export default MangaIndex;

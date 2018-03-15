@@ -153,13 +153,15 @@ img[data-src] {
   display: flex;
   flex-wrap: wrap;
   margin: 0.75em; }
+  .manga-index .icon {
+    height: 1.5em; }
   .manga-index button {
     height: 300px;
     width: 200px;
-    margin: 1.5em;
+    margin: 1em;
     background-color: rgba(0, 0, 0, 0.1);
     border: none;
-    font-size: 1em;
+    font-size: 1.5em;
     transition: background-color .5s; }
     .manga-index button:hover {
       background-color: rgba(0, 0, 0, 0.3); }
