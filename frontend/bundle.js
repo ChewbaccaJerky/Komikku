@@ -55505,6 +55505,7 @@ var MangaItem = function MangaItem(_ref) {
 
 
     var image = manga.image ? _react2.default.createElement('img', { src: "https://cdn.mangaeden.com/mangasimg/" + manga.image, alt: manga.title }) : "";
+
     return _react2.default.createElement(
         'div',
         { className: 'manga-item' },
