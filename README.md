@@ -18,7 +18,7 @@ Using Komikku API and implementing Manga Eden API, the application is seeded wit
 Allows users to navigate through the choosen manga's pages and chapters.
 
 ### Search
-![Search][search]
+![](./screenshot/search.gif)
 
 Filters manga list by search parameters.
 
