@@ -45,17 +45,17 @@ class MangaIndex extends React.Component {
 
     handleSearchChange(e){
         this.setState({search: e.target.value.toLowerCase()});
-        console.log(this.state.search);
     }
 
     render(){
 
         let mangaItems = [];
-        const search = this.state.search;
-        let regex = new RegExp(search.replace(' ', '-'));
+        const search = this.state.search.replace(' ', '-');
+        let regex = new RegExp(search);
 
         if(this.state.mangas) {
             Object.keys(this.state.mangas).forEach((title)=>{
+                // if(search === "" || title.includes(search)) {
                 if(search === "" || regex.test(title)) {
                     mangaItems.push((
                             <MangaItem manga={this.state.mangas[title]} key={title} />
@@ -68,8 +68,8 @@ class MangaIndex extends React.Component {
             <ReactCSSTransitionGroup
                         className="manga-index"
                         transitionName="fade"
-                        transitionEnterTimeout={700}
-                        transitionLeaveTimeout={500}>
+                        transitionEnterTimeout={300}
+                        transitionLeaveTimeout={300}>
                 <button onClick={this.handleOpenModal}><Icon image_name="search" /></button>
                 { mangaItems }
                 <button onClick={this.handleClick}>More Manga</button>

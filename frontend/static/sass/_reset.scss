@@ -33,3 +33,6 @@ img[data-src] {
     opacity: 0;
 }
 
+textarea, input, button, textarea:hover, input:hover, input:focus, input:active {
+    outline: none;
+}

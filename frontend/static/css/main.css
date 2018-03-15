@@ -26,20 +26,23 @@ img {
 img[data-src] {
   opacity: 0; }
 
+textarea, input, button, textarea:hover, input:hover, input:focus, input:active {
+  outline: none; }
+
 /* TRANSITIONS */
 .fade-enter {
   opacity: 0.01; }
 
 .fade-enter.fade-enter-active {
   opacity: 1;
-  transition: all 1s ease-in; }
+  transition: all 0.5s ease-in; }
 
 .fade-leave {
   opacity: 1; }
 
 .fade-leave.fade-leave-active {
   opacity: 0.01;
-  transition: opacity 1s ease-in; }
+  transition: opacity 0.5s ease-in; }
 
 .fade-appear {
   opacity: 0.01; }
@@ -335,5 +338,19 @@ img[data-src] {
     text-decoration: none;
     padding: 1em;
     color: rgba(0, 0, 0, 0.5); }
+
+.search-bar form {
+  display: flexbox;
+  justify-content: flex-start;
+  align-items: center; }
+  .search-bar form input {
+    width: 100%;
+    font-size: 2em;
+    background-color: transparent;
+    border: none;
+    padding-left: 1em; }
+.search-bar .icon {
+  height: 1.5em;
+  background-color: transparent; }
 
 /*# sourceMappingURL=main.css.map */

@@ -38247,7 +38247,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var image_name = ["dashboard", "search", "favorites"];
+var image_name = ["dashboard", "favorites"];
 
 var NavBar = function (_React$Component) {
     _inherits(NavBar, _React$Component);
@@ -38615,7 +38615,6 @@ var MangaIndex = function (_React$Component) {
         key: 'handleSearchChange',
         value: function handleSearchChange(e) {
             this.setState({ search: e.target.value.toLowerCase() });
-            console.log(this.state.search);
         }
     }, {
         key: 'render',
@@ -38623,11 +38622,12 @@ var MangaIndex = function (_React$Component) {
             var _this2 = this;
 
             var mangaItems = [];
-            var search = this.state.search;
-            var regex = new RegExp(search.replace(' ', '-'));
+            var search = this.state.search.replace(' ', '-');
+            var regex = new RegExp(search);
 
             if (this.state.mangas) {
                 Object.keys(this.state.mangas).forEach(function (title) {
+                    // if(search === "" || title.includes(search)) {
                     if (search === "" || regex.test(title)) {
                         mangaItems.push(_react2.default.createElement(_manga_item2.default, { manga: _this2.state.mangas[title], key: title }));
                     }
@@ -38639,8 +38639,8 @@ var MangaIndex = function (_React$Component) {
                 {
                     className: 'manga-index',
                     transitionName: 'fade',
-                    transitionEnterTimeout: 700,
-                    transitionLeaveTimeout: 500 },
+                    transitionEnterTimeout: 300,
+                    transitionLeaveTimeout: 300 },
                 _react2.default.createElement(
                     'button',
                     { onClick: this.handleOpenModal },
@@ -57401,7 +57401,6 @@ var SearchBar = function SearchBar(_ref) {
     );
 };
 
-// < button type = "submit" > <Icon image_name="search"/> < /button>
 exports.default = SearchBar;
 
 /***/ }),
@@ -57441,11 +57440,21 @@ var SearchModal = function SearchModal(_ref) {
         {
             isOpen: showModal,
             onRequestClose: handleCloseModal,
+            className: "search-modal",
             style: {
+                overlay: {
+                    backgroundColor: "rgba(0,0,0,0.5)"
+                },
                 content: {
-                    backgroundColor: "rgba(0,0,0,0.1)",
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
                     border: "none",
-                    borderRadius: "2em"
+                    borderRadius: "2em",
+                    height: "3em",
+                    width: "70%",
+                    display: "block",
+                    float: "right",
+                    margin: "4em"
+
                 }
             } },
         _react2.default.createElement(_search_bar2.default, {

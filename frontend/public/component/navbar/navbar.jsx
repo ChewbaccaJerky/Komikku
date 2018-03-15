@@ -5,7 +5,6 @@ import LinkIndex from './link-index';
 
 const image_name = [
     "dashboard",
-    "search",
     "favorites"
 ];
 

@@ -1,0 +1,19 @@
+
+.search-bar {
+    form{
+        display: flexbox;
+        justify-content: flex-start;
+        align-items: center;
+        input {
+            width: 100%;
+            font-size: 2em;
+            background-color: transparent;
+            border: none;
+            padding-left: 1em;
+        }
+    }
+    .icon {
+        height: 1.5em;
+        background-color: transparent;
+    }
+}
